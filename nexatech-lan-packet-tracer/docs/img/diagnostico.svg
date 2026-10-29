@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="757" height="308" viewBox="0 0 757 308" role="img" aria-label="PC-B mal configurado — diagnóstico antes de cambiar nada">
+<rect width="757" height="308" rx="10" fill="#0F1217"/>
+<path d="M10 0H747a10 10 0 0 1 10 10V38H0V10A10 10 0 0 1 10 0z" fill="#191E27"/>
+<line x1="0" y1="38" x2="757" y2="38" stroke="#262D39"/>
+<circle cx="20" cy="19" r="6" fill="#FF5F57"/><circle cx="40" cy="19" r="6" fill="#FEBC2E"/><circle cx="60" cy="19" r="6" fill="#28C840"/>
+<text x="378.5" y="24" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#7A8494">PC-B mal configurado — diagnóstico antes de cambiar nada</text>
+<text x="18" y="69.0" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#5CC8FF">C:\&gt;</tspan><tspan fill="#D7DDE6">ipconfig</tspan></text>
+<text x="18" y="89.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">FastEthernet0 Connection:(default port)</tspan></text>
+<text x="18" y="109.3" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   IPv4 Address......................: </tspan><tspan fill="#FF6B5B">198.51.100.20</tspan><tspan fill="#D7DDE6">      </tspan><tspan fill="#7A8494"># fuera de la /24 de la oficina</tspan></text>
+<text x="18" y="129.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   Subnet Mask.......................: 255.255.255.0</tspan></text>
+<text x="18" y="149.6" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   Default Gateway...................: 0.0.0.0</tspan></text>
+<text x="18" y="169.8" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="189.9" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#5CC8FF">C:\&gt;</tspan><tspan fill="#D7DDE6">ping 192.0.2.10</tspan></text>
+<text x="18" y="210.1" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">Pinging 192.0.2.10 with 32 bytes of data:</tspan></text>
+<text x="18" y="230.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#FF6B5B">Request timed out.</tspan></text>
+<text x="18" y="250.4" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#FF6B5B">Request timed out.</tspan></text>
+<text x="18" y="270.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="290.7" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#7A8494">Causa: PC-B está en otra subred y no hay router. Solución: IP dentro de 192.0.2.0/24.</tspan></text>
+</svg>

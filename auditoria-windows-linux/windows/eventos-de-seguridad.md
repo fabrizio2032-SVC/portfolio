@@ -13,7 +13,7 @@
 ## Configuración en la Default Domain Policy
 - **Directiva de bloqueo de cuenta:** umbral de 2 intentos y duración 0 (solo el administrador desbloquea).
 - **Auditoría:** inicio de sesión, administración de cuentas y acceso a objetos, en correcto y en error.
-- **Fichero auditado:** `C:\<carpeta>\topsecurity.txt` › Propiedades › Seguridad › Opciones avanzadas › Auditoría, para *Domain Users* en correcto y en error.
+- **Fichero auditado:** `C:\Auditoria\topsecurity.txt` › Propiedades › Seguridad › Opciones avanzadas › Auditoría, para *Domain Users* en correcto y en error.
 - Aplicar con `gpupdate /force`.
 
 ## Filtro rápido en PowerShell

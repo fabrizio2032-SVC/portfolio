@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="757" height="409" viewBox="0 0 757 409" role="img" aria-label="DC-TECHCORP — PowerShell (Administrador)">
+<rect width="757" height="409" rx="10" fill="#0C1230"/>
+<path d="M10 0H747a10 10 0 0 1 10 10V38H0V10A10 10 0 0 1 10 0z" fill="#1B2140"/>
+<line x1="0" y1="38" x2="757" y2="38" stroke="#262D39"/>
+<circle cx="20" cy="19" r="6" fill="#FF5F57"/><circle cx="40" cy="19" r="6" fill="#FEBC2E"/><circle cx="60" cy="19" r="6" fill="#28C840"/>
+<text x="378.5" y="24" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#7A8494">DC-TECHCORP — PowerShell (Administrador)</text>
+<text x="18" y="69.0" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#5CC8FF">PS C:\&gt;</tspan><tspan fill="#D7DDE6"> Get-ADUserResultantPasswordPolicy -Identity u_sistemes1</tspan></text>
+<text x="18" y="89.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="109.3" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">AppliesTo                   : {CN=GG_Sistemes,OU=Grupos,OU=TechCorp,DC=techcorp,DC=local}</tspan></text>
+<text x="18" y="129.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">ComplexityEnabled           : True</tspan></text>
+<text x="18" y="149.6" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">LockoutDuration             : 00:30:00</tspan></text>
+<text x="18" y="169.8" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">LockoutThreshold            : 3</tspan></text>
+<text x="18" y="189.9" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">MaxPasswordAge              : 30.00:00:00</tspan></text>
+<text x="18" y="210.1" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">MinPasswordLength           : </tspan><tspan fill="#3EE08F">12</tspan></text>
+<text x="18" y="230.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">Name                        : </tspan><tspan fill="#3EE08F">PSO_GG_Sistemes</tspan></text>
+<text x="18" y="250.4" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">PasswordHistoryCount        : 24</tspan></text>
+<text x="18" y="270.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">Precedence                  : 1</tspan></text>
+<text x="18" y="290.7" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="310.8" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#5CC8FF">PS C:\&gt;</tspan><tspan fill="#D7DDE6"> Get-ADFineGrainedPasswordPolicySubject PSO_GG_Sistemes | Select Name, ObjectClass</tspan></text>
+<text x="18" y="330.9" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="351.1" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">Name         ObjectClass</tspan></text>
+<text x="18" y="371.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">----         -----------</tspan></text>
+<text x="18" y="391.4" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">GG_Sistemes  group</tspan></text>
+</svg>

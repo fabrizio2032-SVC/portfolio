@@ -3,7 +3,7 @@
 bantime  = 1h
 findtime = 10m
 maxretry = 4
-ignoreip = 127.0.0.1/8 <RED_VPN>/24
+ignoreip = 127.0.0.1/8 192.0.2.0/24
 
 [sshd]
 enabled = true

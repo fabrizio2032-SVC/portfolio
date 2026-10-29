@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="543" height="288" viewBox="0 0 543 288" role="img" aria-label="SW1 — CLI">
+<rect width="543" height="288" rx="10" fill="#0F1217"/>
+<path d="M10 0H533a10 10 0 0 1 10 10V38H0V10A10 10 0 0 1 10 0z" fill="#191E27"/>
+<line x1="0" y1="38" x2="543" y2="38" stroke="#262D39"/>
+<circle cx="20" cy="19" r="6" fill="#FF5F57"/><circle cx="40" cy="19" r="6" fill="#FEBC2E"/><circle cx="60" cy="19" r="6" fill="#28C840"/>
+<text x="271.5" y="24" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" fill="#7A8494">SW1 — CLI</text>
+<text x="18" y="69.0" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">SW1#show mac address-table</tspan></text>
+<text x="18" y="89.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">          Mac Address Table</tspan></text>
+<text x="18" y="109.3" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">-------------------------------------------</tspan></text>
+<text x="18" y="129.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="149.6" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">Vlan    Mac Address       Type        Ports</tspan></text>
+<text x="18" y="169.8" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">----    -----------       --------    -----</tspan></text>
+<text x="18" y="189.9" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"></text>
+<text x="18" y="210.1" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   1    0060.5c2b.1a01    DYNAMIC     </tspan><tspan fill="#3EE08F">Fa0/1</tspan><tspan fill="#D7DDE6">     </tspan><tspan fill="#7A8494"># PC-A</tspan></text>
+<text x="18" y="230.2" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   1    0060.5c2b.1a02    DYNAMIC     </tspan><tspan fill="#3EE08F">Fa0/2</tspan><tspan fill="#D7DDE6">     </tspan><tspan fill="#7A8494"># PC-B</tspan></text>
+<text x="18" y="250.4" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">   1    0060.5c2b.1a03    DYNAMIC     </tspan><tspan fill="#3EE08F">Fa0/3</tspan><tspan fill="#D7DDE6">     </tspan><tspan fill="#7A8494"># SRV1</tspan></text>
+<text x="18" y="270.5" font-family="ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" xml:space="preserve"><tspan fill="#D7DDE6">SW1#</tspan></text>
+</svg>

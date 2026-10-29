@@ -11,8 +11,8 @@ GlaciaNova Distribucion S.L.
 | **Empresa implementadora**     | NorthByte IT Services        |
 | **Responsable tecnico**        | Departamento de Sistemas     |
 | **Dominio Active Directory**   | glacianova.local             |
-| **Rango de red**               | <RED_LAN>/24              |
-| **Servidor principal**         | srv-ice01 - <IP_SRV_ICE01>    |
+| **Rango de red**               | 192.0.2.0/24              |
+| **Servidor principal**         | srv-ice01 - 192.0.2.10    |
 | **Sistema operativo servidor** | Ubuntu Server 24.04 LTS      |
 | **Cliente Windows**            | win-ice01 - IP dinamica DHCP |
 | **Version del documento**      | 1.0                          |
@@ -52,12 +52,12 @@ La infraestructura se organiza en torno a un servidor central que actua como pun
 |                    |                                                                |
 |--------------------|----------------------------------------------------------------|
 | **Componente**     | **Descripcion**                                                |
-| Servidor principal | srv-ice01 - Ubuntu Server 24.04 LTS - IP fija <IP_SRV_ICE01>    |
+| Servidor principal | srv-ice01 - Ubuntu Server 24.04 LTS - IP fija 192.0.2.10    |
 | Dominio AD         | glacianova.local - REALM: GLACIANOVA.LOCAL                     |
-| Red corporativa    | <RED_LAN>/24 - Gateway: <GATEWAY>                        |
-| DHCP pool          | <INICIO_DHCP> - <FIN_DHCP>                                |
-| DNS primario       | <IP_SRV_ICE01> (Samba Internal DNS)                             |
-| DNS secundario     | <DNS_EXTERNO> (fallback externo)                                     |
+| Red corporativa    | 192.0.2.0/24 - Gateway: 192.0.2.1                        |
+| DHCP pool          | 192.0.2.100 - 192.0.2.200                                |
+| DNS primario       | 192.0.2.10 (Samba Internal DNS)                             |
+| DNS secundario     | 192.0.2.1 (fallback externo)                                     |
 | Cliente Windows    | win-ice01 - Windows 10 Pro - IP dinamica por DHCP              |
 | Almacenamiento     | RAID 1 por software (mdadm) - 3 arrays: sistema, datos, backup |
 
@@ -192,9 +192,9 @@ El servidor de impresion se ha implementado con CUPS (Common Unix Printing Syste
 |-------------------------|------------------------------------------------|
 | **Aspecto**             | **Configuracion**                              |
 | Software                | CUPS (cups y cups-client)                      |
-| Puerto de escucha       | <IP>:631 (acceso desde toda la red)         |
-| Acceso al panel web     | http://<IP_SRV_ICE01>:631                       |
-| Acceso administrativo   | Restringido a la subred <RED_LAN>/24        |
+| Puerto de escucha       | *:631 (acceso desde toda la red)            |
+| Acceso al panel web     | http://192.0.2.10:631                       |
+| Acceso administrativo   | Restringido a la subred 192.0.2.0/24        |
 | Permisos de impresion   | Configurados por grupo mediante lpadmin        |
 | Integracion con dominio | Autenticacion de usuarios mediante PAM/Winbind |
 
@@ -209,20 +209,20 @@ La monitorizacion de la infraestructura se ha implementado con Nagios 4, una de 
 |                            |                                |                                     |
 |----------------------------|--------------------------------|-------------------------------------|
 | **Host**                   | **Servicio monitorizado**      | **Alerta configurada**              |
-| srv-ice01 (<IP_SRV_ICE01>)  | Disponibilidad del host (ping) | Alerta si no responde en 3 intentos |
+| srv-ice01 (192.0.2.10)  | Disponibilidad del host (ping) | Alerta si no responde en 3 intentos |
 | srv-ice01                  | Servicio SSH (puerto 22)       | Alerta si SSH no responde           |
 | srv-ice01                  | Espacio en /datos (RAID md1)   | Warning al 80%, Critical al 90%     |
 | srv-ice01                  | Espacio en /backup (RAID md2)  | Warning al 80%, Critical al 90%     |
 | srv-ice01                  | Servicio Samba AD DC           | Alerta si el servicio cae           |
-| win-ice01 (<INICIO_DHCP>) | Disponibilidad del host (ping) | Alerta si no responde               |
+| win-ice01 (192.0.2.100) | Disponibilidad del host (ping) | Alerta si no responde               |
 
 ### 7.3 Acceso al panel de monitorizacion
 |                        |                                   |
 |------------------------|-----------------------------------|
 | **Parametro**          | **Valor**                         |
-| URL de acceso          | http://<IP_SRV_ICE01>/nagios4      |
+| URL de acceso          | http://192.0.2.10/nagios4      |
 | Usuario                | nagiosadmin                       |
-| Acceso permitido desde | Red corporativa <RED_LAN>/24   |
+| Acceso permitido desde | Red corporativa 192.0.2.0/24   |
 | Frecuencia de chequeos | Cada 5 minutos (por defecto)      |
 | Notificaciones         | Configurables por email o webhook |
 
@@ -260,8 +260,8 @@ Una vez completada la implementacion, se han ejecutado las siguientes pruebas de
 |----------------------------|---------------------------------------------------------|-----------------------------------------------------|------------|
 | **Prueba**                 | **Descripcion**                                         | **Resultado**                                       | **Estado** |
 | RAID operativo             | cat /proc/mdstat - todos los arrays muestran \[UU\]     | Ambos discos activos en md0, md1 y md2              | OK         |
-| IP estatica                | ip a - interfaz con <IP_SRV_ICE01>/24                    | IP correctamente asignada y persistente             | OK         |
-| DNS dominio                | host glacianova.local <IP_SRV_ICE01>                     | Resuelve correctamente a <IP_SRV_ICE01>              | OK         |
+| IP estatica                | ip a - interfaz con 192.0.2.10/24                    | IP correctamente asignada y persistente             | OK         |
+| DNS dominio                | host glacianova.local 192.0.2.10                     | Resuelve correctamente a 192.0.2.10              | OK         |
 | Kerberos                   | kinit administrator - obtencion de ticket               | Ticket Kerberos obtenido sin errores                | OK         |
 | Login Windows              | Inicio sesion con GLACIANOVA\jgomez en win-ice01        | Autenticacion correcta, perfil movil cargado        | OK         |
 | Perfil movil               | Archivos de perfil en /datos/perfiles/jgomez tras login | Carpeta de perfil creada automaticamente            | OK         |
@@ -273,31 +273,31 @@ Una vez completada la implementacion, se han ejecutado las siguientes pruebas de
 | Backup manual              | Ejecucion manual del script de backup                   | Directorios creados en /backup/ con datos correctos | OK         |
 | Restauracion               | Restauracion de archivo de prueba desde /backup/        | Archivo recuperado sin perdida de datos             | OK         |
 | Nagios hosts               | Panel web: estado de todos los hosts                    | Todos los hosts en estado OK (verde)                | OK         |
-| DHCP asignacion            | ipconfig /all en win-ice01                              | IP en rango .100-.200, DNS = <IP_SRV_ICE01>          | OK         |
+| DHCP asignacion            | ipconfig /all en win-ice01                              | IP en rango .100-.200, DNS = 192.0.2.10          | OK         |
 
 ## 10. DIAGRAMA DE RED Y ARQUITECTURA
 |                                                                                                                                                                                                                                                                  |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **DESCRIPCION:** La arquitectura de red de GlaciaNova Distribucion S.L. esta basada en una red plana de clase C (<RED_LAN>/24) con el servidor actuando como punto central de todos los servicios. A continuacion se detalla la topologia logica del sistema. |
+| **DESCRIPCION:** La arquitectura de red de GlaciaNova Distribucion S.L. esta basada en una red plana de clase C (192.0.2.0/24) con el servidor actuando como punto central de todos los servicios. A continuacion se detalla la topologia logica del sistema. |
 
 ### 10.1 Topologia logica de la red
 |                                    |                                                         |
 |------------------------------------|---------------------------------------------------------|
 | **Dispositivo / Servicio**         | **Direccion IP y funcion**                              |
-| Gateway / Router                   | <GATEWAY> - Salida a Internet                        |
-| srv-ice01 - Servidor principal     | <IP_SRV_ICE01> - DC, DNS, DHCP, Samba, CUPS, Nagios, SSH |
-| win-ice01 - Cliente Windows 10 Pro | <INICIO_DHCP>-200 (dinamica) - Equipo unido al dominio |
-| Pool DHCP disponible               | <INICIO_DHCP> - <FIN_DHCP> - Para futuros clientes |
-| Broadcast de red                   | <IP>                                          |
+| Gateway / Router                   | 192.0.2.1 - Salida a Internet                        |
+| srv-ice01 - Servidor principal     | 192.0.2.10 - DC, DNS, DHCP, Samba, CUPS, Nagios, SSH |
+| win-ice01 - Cliente Windows 10 Pro | 192.0.2.100-200 (dinamica) - Equipo unido al dominio |
+| Pool DHCP disponible               | 192.0.2.100 - 192.0.2.200 - Para futuros clientes |
+| Broadcast de red                   | 192.0.2.255                                   |
 
 ### 10.2 Flujo de autenticacion de un cliente
 - El cliente arranca y solicita IP al servidor DHCP (srv-ice01:67/UDP).
 
-- El servidor DHCP asigna IP dinamica + DNS = <IP_SRV_ICE01> + dominio = glacianova.local.
+- El servidor DHCP asigna IP dinamica + DNS = 192.0.2.10 + dominio = glacianova.local.
 
-- El cliente resuelve srv-ice01.glacianova.local mediante DNS (<IP_SRV_ICE01>:53).
+- El cliente resuelve srv-ice01.glacianova.local mediante DNS (192.0.2.10:53).
 
-- El usuario introduce credenciales de dominio -\> el cliente contacta el DC en <IP_SRV_ICE01>:88 (Kerberos) y <IP_SRV_ICE01>:389 (LDAP).
+- El usuario introduce credenciales de dominio -\> el cliente contacta el DC en 192.0.2.10:88 (Kerberos) y 192.0.2.10:389 (LDAP).
 
 - Kerberos valida las credenciales y emite un ticket de sesion.
 

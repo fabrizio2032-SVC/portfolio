@@ -2,12 +2,12 @@
 // registro.php · Formulario de reserva de citas conectado a MySQL (patitas_felices.pacientes)
 //
 // Mejoras respecto a la primera versión de la práctica:
-//  1. Credenciales fuera del código (config.php, que no se sube al repositorio).
+//  1. Credenciales fuera del código: config.php las lee de variables de entorno de Apache.
 //  2. Consulta preparada: los datos del formulario nunca se concatenan en el SQL (evita inyección SQL).
 //  3. Validación de los campos y escape de la salida con htmlspecialchars.
 //  4. Usuario de MySQL con permisos mínimos (solo INSERT), nunca root.
 
-require __DIR__ . '/config.php';   // define $db_host, $db_user, $db_pass, $db_name
+require __DIR__ . '/config.php';   // $db_host, $db_user, $db_pass, $db_name desde el entorno
 
 $mensaje = '';
 $ok = false;
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_ok = DateTime::createFromFormat('Y-m-d', $fecha) !== false;
 
     if ($nombre_m === '' || $dueno === '' || !in_array($especie, $especies_validas, true) || !$fecha_ok) {
-        $mensaje = 'Revisa los datos del formulario: todos los campos son obligatorios.';
+        $mensaje = 'Revisa los datos: todos los campos son obligatorios y la especie debe ser una de la lista.';
     } else {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         try {

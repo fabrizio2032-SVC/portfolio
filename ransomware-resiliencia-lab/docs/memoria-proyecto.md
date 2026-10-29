@@ -333,23 +333,23 @@
 
 ### Direccionamiento IP y puertos de acceso
 
-> Se emplean tres redes: la LAN corporativa simulada <RED_CORP>/24, la red aislada de la bóveda <RED_BOVEDA>/24 y la red del túnel VPN <RED_VPN>/24.
+> Se emplean tres redes: la LAN corporativa simulada 198.51.100.0/24, la red aislada de la bóveda 203.0.113.0/24 y la red del túnel VPN 192.0.2.0/24.
 
 | **Servicio / Componente** | **Dirección IP** | **Puerto / Protocolo** | **Descripción de Acceso**           |
 |---------------------------|------------------|------------------------|-------------------------------------|
-| **Servidor Web (Nginx /** | <IP_SRV_SVC01>    | 8080 / HTTP            | Formulario de incidencias y portal  |
+| **Servidor Web (Nginx /** | 198.51.100.20    | 8080 / HTTP            | Formulario de incidencias y portal  |
 | **Front-end)**            |                  |                        | corporativo; acceso desde LAN y VPN |
 
 | **Servicio / Componente**               | **Dirección IP**              | **Puerto / Protocolo** | **Descripción de Acceso**                                                               |
 |-----------------------------------------|-------------------------------|------------------------|-----------------------------------------------------------------------------------------|
-| **Motor de Automatización (n8n)**       | <IP_SRV_SVC01>                 | 5678 / HTTP            | Panel de control y Webhooks; panel restringido a VPN, webhooks solo a orígenes internos |
+| **Motor de Automatización (n8n)**       | 198.51.100.20                 | 5678 / HTTP            | Panel de control y Webhooks; panel restringido a VPN, webhooks solo a orígenes internos |
 | **Base de Datos (PostgreSQL)**          | Red Docker interna (data_net) | 5432 / TCP             | Acceso restringido a los contenedores n8n y Grafana                                     |
-| **Monitorización (Grafana)**            | <IP_SRV_SVC01>                 | 3000 / HTTP            | Dashboards de seguimiento; acceso desde LAN y VPN                                       |
-| **VPN (WireGuard)**                     | <IP_SRV_SVC01>                 | 51820 / UDP            | Administración remota cifrada                                                           |
-| **Proxy (Squid)**                       | <IP_SRV_SVC01>                 | 3128 / TCP             | Salida a Internet filtrada para servidores                                              |
-| **Servidor de ficheros (Samba)**        | <IP_SRV_DOCS01>                 | 445 / TCP              | Recursos compartidos de expedientes para usuarios del dominio                           |
-| **Active Directory / DNS**              | <IP_SRV_DC01>                 | 53, 389, 445 / TCP-UDP | Servicios de dominio para la LAN                                                        |
-| **Repositorio de copias (rest-server)** | <IP_SRV_VAULT01>                 | 8000 / TCP             | Solo desde <IP_SRV_DC01>, .20 y .30; modo append-only                                   |
+| **Monitorización (Grafana)**            | 198.51.100.20                 | 3000 / HTTP            | Dashboards de seguimiento; acceso desde LAN y VPN                                       |
+| **VPN (WireGuard)**                     | 198.51.100.20                 | 51820 / UDP            | Administración remota cifrada                                                           |
+| **Proxy (Squid)**                       | 198.51.100.20                 | 3128 / TCP             | Salida a Internet filtrada para servidores                                              |
+| **Servidor de ficheros (Samba)**        | 198.51.100.30                 | 445 / TCP              | Recursos compartidos de expedientes para usuarios del dominio                           |
+| **Active Directory / DNS**              | 198.51.100.10                 | 53, 389, 445 / TCP-UDP | Servicios de dominio para la LAN                                                        |
+| **Repositorio de copias (rest-server)** | 203.0.113.10                 | 8000 / TCP             | Solo desde 198.51.100.10, .20 y .30; modo append-only                                   |
 | **SSH de administración**               | Todos los servidores Linux    | 22 / TCP               | Solo desde la red del túnel VPN; protegido con Fail2ban                                 |
 
 ### Red Docker
@@ -476,13 +476,13 @@
 
 > El entorno final se compone de un anfitrión que ejecuta cuatro máquinas virtuales de servidor y un cliente de pruebas:
 
-- **srv-dc01 (<IP_SRV_DC01>):** Windows Server 2022, dominio coal.lab.
+- **srv-dc01 (198.51.100.10):** Windows Server 2022, dominio coal.lab.
 
-- **srv-docs01 (<IP_SRV_DOCS01>):** Ubuntu Server con Samba; contiene el recurso de expedientes con documentación de ejemplo no real.
+- **srv-docs01 (198.51.100.30):** Ubuntu Server con Samba; contiene el recurso de expedientes con documentación de ejemplo no real.
 
-- **srv-svc01 (<IP_SRV_SVC01>):** Ubuntu Server con Docker. Contenedores: nginx, n8n, postgres y grafana; además WireGuard, Squid y Fail2ban en el sistema anfitrión.
+- **srv-svc01 (198.51.100.20):** Ubuntu Server con Docker. Contenedores: nginx, n8n, postgres y grafana; además WireGuard, Squid y Fail2ban en el sistema anfitrión.
 
-- **srv-vault01 (<IP_SRV_VAULT01>):** Ubuntu Server en la red aislada con rest-server y snapshots.
+- **srv-vault01 (203.0.113.10):** Ubuntu Server en la red aislada con rest-server y snapshots.
 
 - **cli-win01:** cliente Windows unido al dominio para las pruebas de usuario.
 
@@ -504,7 +504,7 @@
 > n8n:
 > image: n8nio/n8n:1.64.0 restart: unless-stopped environment:
 > DB_TYPE: postgresdb DB_POSTGRESDB_HOST: postgres DB_POSTGRESDB_DATABASE: resiliencia DB_POSTGRESDB_USER: \${PG_N8N_USER} DB_POSTGRESDB_PASSWORD: \${PG_N8N_PASS} N8N_ENCRYPTION_KEY: \${N8N_KEY}
-> WEBHOOK_URL: <http://<IP_SRV_SVC01>:5678/>
+> WEBHOOK_URL: <http://198.51.100.20:5678/>
 > N8N_SECURE_COOKIE: "false" \# solo laboratorio sin HTTPS
 > GENERIC_TIMEZONE: Europe/Madrid ports: \["5678:5678"\]
 > volumes:
@@ -566,7 +566,7 @@
 > mensaje TEXT,
 > creado_en TIMESTAMPTZ DEFAULT now()
 > );
-> CREATE ROLE grafana_ro LOGIN PASSWORD 'cambiar';
+> -- (el rol grafana_ro se crea en initdb/02_roles.sh con la contraseña del .env)
 > GRANT SELECT ON ALL TABLES IN SCHEMA public TO grafana_ro;
 > Nota: la contraseña del rol grafana_ro es un valor de ejemplo; en el despliegue real debe sustituirse por una contraseña aleatoria gestionada desde el fichero .env.
 
@@ -618,18 +618,18 @@
 
 ### Configuración de WireGuard (VPN)
 
-> WireGuard se instala en srv-svc01 y es el único camino para el acceso administrativo remoto. El túnel usa la red <RED_VPN>/24 y un par de claves por administrador.
+> WireGuard se instala en srv-svc01 y es el único camino para el acceso administrativo remoto. El túnel usa la red 192.0.2.0/24 y un par de claves por administrador.
 > \# /etc/wireguard/wg0.conf (servidor) \[Interface\]
-> Address = <IP_VPN_SERVIDOR>/24 ListenPort = 51820
-> PrivateKey = \<clave_privada_servidor\>
+> Address = 192.0.2.1/24 ListenPort = 51820
+> PrivateKey = (clave generada con wg genkey; solo en el servidor)
 > PostUp = iptables -A FORWARD -i wg0 -o ens18 -j ACCEPT PostDown = iptables -D FORWARD -i wg0 -o ens18 -j ACCEPT
-> \[Peer\] \# administrador 1 PublicKey = \<clave_publica_admin1\> AllowedIPs = <IP_VPN_ADMIN1>/32
-> Las claves se generan con wg genkey y wg pubkey; las claves privadas no se almacenan en el repositorio. El acceso por SSH a los servidores solo se permite desde <RED_VPN>/24.
+> \[Peer\] \# administrador 1 PublicKey = (clave pública del administrador 1) AllowedIPs = 192.0.2.2/32
+> Las claves se generan con wg genkey y wg pubkey; las claves privadas no se almacenan en el repositorio. El acceso por SSH a los servidores solo se permite desde 192.0.2.0/24.
 
 ### Configuración de Squid (proxy)
 
 > Squid controla la salida de los servidores a Internet. La política es de denegación por defecto con una lista blanca de destinos de actualización.
-> \# /etc/squid/squid.conf (extracto) acl lan src <RED_CORP>/24
+> \# /etc/squid/squid.conf (extracto) acl lan src 198.51.100.0/24
 > acl SSL_ports port 443
 > acl Safe_ports port 80 443 acl CONNECT method CONNECT
 > acl destinos_ok dstdomain "/etc/squid/destinos_permitidos.txt" acl bloqueados dstdomain "/etc/squid/bloqueados.txt"
@@ -641,7 +641,7 @@
 
 > \# /etc/fail2ban/jail.local \[DEFAULT\]
 > bantime = 1h findtime = 10m maxretry = 4
-> ignoreip = 127.0.0.1/8 <RED_VPN>/24
+> ignoreip = 127.0.0.1/8 192.0.2.0/24
 > \[sshd\]
 > enabled = true
 > \[nginx-http-auth\] enabled = true
@@ -671,7 +671,7 @@
 
 > **Cómo comunicar una incidencia**
 
-- Acceder a [http://<IP_SRV_SVC01>:8080](http://<IP_SRV_SVC01>:8080/) desde la red del Colegio o por VPN.
+- Acceder a [http://198.51.100.20:8080](http://198.51.100.20:8080/) desde la red del Colegio o por VPN.
 
 - Rellenar el formulario: nombre, equipo afectado, hora aproximada y descripción de lo ocurrido (por ejemplo, ficheros que no se abren o extensiones desconocidas).
 
@@ -695,7 +695,7 @@
 
 #### Unir un equipo al dominio
 
-- Compruebe que el equipo recibe la DNS <IP_SRV_DC01> y que hay conectividad con el dominio.
+- Compruebe que el equipo recibe la DNS 198.51.100.10 y que hay conectividad con el dominio.
 
 - Configuración, Cuentas, Acceso a trabajo o escuela: Conectar, y elegir Unir este dispositivo a un dominio de Active Directory local.
 
@@ -717,7 +717,7 @@
 
 - Anfitrión con virtualización activada en BIOS y el hipervisor instalado.
 
-- Redes virtuales: lan-corp (<RED_CORP>/24), vault-net (<RED_BOVEDA>/24, sin puerta de enlace) y salida NAT solo para srv-svc01.
+- Redes virtuales: lan-corp (198.51.100.0/24), vault-net (203.0.113.0/24, sin puerta de enlace) y salida NAT solo para srv-svc01.
 
 - Imágenes de Windows Server 2022 y Ubuntu Server 24.04 LTS.
 
@@ -739,12 +739,12 @@
 > rest-server --path /srv/restic --append-only --private-repos \\
 > --htpasswd-file /srv/restic/.htpasswd --listen :8000
 > \# Cortafuegos: solo 3 orígenes al puerto 8000 sudo ufw default deny incoming
-> sudo ufw allow from <IP_SRV_DC01> to any port 8000 proto tcp sudo ufw allow from <IP_SRV_SVC01> to any port 8000 proto tcp sudo ufw allow from <IP_SRV_DOCS01> to any port 8000 proto tcp sudo ufw enable
+> sudo ufw allow from 198.51.100.10 to any port 8000 proto tcp sudo ufw allow from 198.51.100.20 to any port 8000 proto tcp sudo ufw allow from 198.51.100.30 to any port 8000 proto tcp sudo ufw enable
 
 #### Paso 4. Primera copia desde cada cliente
 
 > \# En srv-docs01 (Linux)
-> export RESTIC_REPOSITORY=rest:http://srv-docs01:CLAVE@<IP_SRV_VAULT01>:8000/srv-docs01 export RESTIC_PASSWORD_FILE=/root/.restic_pass
+> export RESTIC_REPOSITORY=rest:http://srv-docs01:${RESTIC_HTTP_PASS}@203.0.113.10:8000/srv-docs01 export RESTIC_PASSWORD_FILE=/root/.restic_pass
 > restic init
 > restic backup /srv/expedientes --tag diaria
 > \# En srv-dc01 (Windows, PowerShell como administrador) wbadmin start systemstatebackup -backupTarget:D: -quiet
@@ -765,7 +765,7 @@
 
 - Instalar y configurar WireGuard, Squid y Fail2ban con los ficheros de los apartados 3.4.6 a 3.4.8.
 
-- Aplicar reglas de ufw en srv-svc01: abrir 8080, 3000 y 5678 solo hacia la LAN y 51820/UDP hacia el exterior, y limitar SSH a <RED_VPN>/24.
+- Aplicar reglas de ufw en srv-svc01: abrir 8080, 3000 y 5678 solo hacia la LAN y 51820/UDP hacia el exterior, y limitar SSH a 192.0.2.0/24.
 
 #### Paso 7. Verificación de la instalación
 

@@ -1,0 +1,11 @@
+[Unit]
+Description=Vigilancia de ficheros señuelo
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/canario.sh
+Environment=WEBHOOK=http://srv-svc01:5678/webhook/canario
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

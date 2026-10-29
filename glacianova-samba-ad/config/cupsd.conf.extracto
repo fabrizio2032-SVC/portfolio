@@ -6,12 +6,12 @@ Browsing On
 
 <Location />
   Order allow,deny
-  Allow from <RED_LAN>/24
+  Allow from 192.0.2.0/24
 </Location>
 
 <Location /admin>
   Order allow,deny
-  Allow from <RED_LAN>/24
+  Allow from 192.0.2.0/24
 </Location>
 
 # Permisos por grupo en una cola de impresión (ejemplo):

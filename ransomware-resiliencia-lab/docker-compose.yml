@@ -1,6 +1,6 @@
 # /opt/resiliencia/docker-compose.yml · srv-svc01
 # Pila de automatización y monitorización del laboratorio.
-# Uso: cp .env.example .env && chmod 600 .env && docker compose up -d && docker compose ps
+# Uso: bash scripts/generar_secretos.sh && docker compose up -d && docker compose ps
 
 services:
   postgres:
@@ -10,6 +10,9 @@ services:
       POSTGRES_DB: resiliencia
       POSTGRES_USER: ${PG_ADMIN_USER}
       POSTGRES_PASSWORD: ${PG_ADMIN_PASS}
+      GRAFANA_RO_PASS: ${GRAFANA_RO_PASS}
+      PG_N8N_USER: ${PG_N8N_USER}
+      PG_N8N_PASS: ${PG_N8N_PASS}
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./initdb:/docker-entrypoint-initdb.d:ro

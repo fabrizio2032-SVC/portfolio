@@ -52,6 +52,4 @@ CREATE TABLE logs_workflow (
   creado_en TIMESTAMPTZ DEFAULT now()
 );
 
--- Rol de solo lectura para Grafana. Cambia la contraseña en el despliegue real.
-CREATE ROLE grafana_ro LOGIN PASSWORD 'cambiar';
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO grafana_ro;
+-- Los roles de n8n y Grafana se crean en 02_roles.sh con contraseñas leídas del .env.
