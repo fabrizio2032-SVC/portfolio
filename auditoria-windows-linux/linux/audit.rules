@@ -1,0 +1,10 @@
+# /etc/audit/rules.d/audit.rules · Ubuntu Server
+# Reglas persistentes: se cargan al arrancar (o con: sudo augenrules --load)
+# -w  fichero o carpeta vigilada
+# -p  permisos que generan evento: r lectura, w escritura, x ejecución, a cambio de atributos
+# -k  etiqueta para buscar luego con ausearch
+
+-w /srv/confidencial/ -p rwa -k acceso_fichero
+-w /etc/passwd -p wa -k cambios_usuarios
+-w /etc/shadow -p wa -k cambios_usuarios
+-w /etc/sudoers -p wa -k cambios_sudo

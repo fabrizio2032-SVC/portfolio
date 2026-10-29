@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Comunicar una incidencia</title>
+<style>body{font-family:system-ui,sans-serif;max-width:36rem;margin:3rem auto;padding:0 1rem;color:#1d2733}label{display:block;margin-top:1rem;font-weight:600}input,select,textarea{width:100%;padding:.6rem;margin-top:.3rem;border:1px solid #c5ced8;border-radius:6px;font:inherit}button{margin-top:1.4rem;padding:.7rem 1.2rem;border:0;border-radius:6px;background:#1f6feb;color:#fff;font-weight:600;cursor:pointer}</style></head>
+<body>
+  <h1>Comunicar una incidencia</h1>
+  <p>Si ves ficheros que no se abren o extensiones desconocidas, desconecta el equipo de la red y rellena este formulario desde otro equipo.</p>
+  <form action="/enviar" method="POST">
+    <label>Nombre<input name="nombre" required></label>
+    <label>Equipo afectado<input name="equipo" required></label>
+    <label>Tipo
+      <select name="tipo"><option>Posible cifrado de ficheros</option><option>Recuperación de fichero</option><option>Otro</option></select>
+    </label>
+    <label>Descripción<textarea name="descripcion" rows="4" required></textarea></label>
+    <button type="submit">Enviar incidencia</button>
+  </form>
+</body>
+</html>

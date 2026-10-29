@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- ==================================================================
+       SEO / DOMINIO → cambia TU_DOMINIO.es por tu dominio real (3 veces)
+       ================================================================== -->
+  <title>Fabrizio Barrial | Estudiante ASIR · Prácticas FCT en Barcelona</title>
+  <meta name="description" content="Portfolio de Fabrizio Barrial, estudiante de Administración de Sistemas Informáticos en Red (ASIR) en Barcelona. Laboratorios de Samba AD, Windows Server, Linux, Docker y ciberseguridad. Disponible para prácticas FCT o puesto junior." />
+  <meta name="author" content="Fabrizio Barrial" />
+  <meta name="theme-color" content="#0F1217" />
+  <link rel="canonical" href="https://TU_DOMINIO.es/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://TU_DOMINIO.es/" />
+  <meta property="og:title" content="Fabrizio Barrial · Estudiante ASIR buscando prácticas" />
+  <meta property="og:description" content="Sistemas, redes y ciberseguridad. Proyectos de laboratorio con Samba AD, Windows Server, Docker y Linux." />
+  <meta property="og:locale" content="es_ES" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1217'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23F2B33D'%3E%3E_%3C/text%3E%3C/svg%3E" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Fabrizio Barrial",
+    "jobTitle": "Estudiante de ASIR",
+    "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
+    "email": "mailto:fabriziobarrialtaipe@gmail.com",
+    "url": "https://TU_DOMINIO.es/",
+    "sameAs": ["https://github.com/fabrizio2032-SVC", "https://www.linkedin.com/in/fabriziobarrial"]
+  }
+  </script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#0B0E12', ground: '#0F1217', panel: '#14181F', panel2: '#191E27',
+            line: '#262D39', line2: '#343D4C',
+            ink: '#E3E8EF', soft: '#A9B3C1', mute: '#7A8494',
+            amber: '#F2B33D', ok: '#3EE08F', alert: '#FF6B5B', info: '#5CC8FF'
+          },
+          fontFamily: {
+            display: ['"Chakra Petch"', '"IBM Plex Sans"', 'sans-serif'],
+            sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+          },
+          maxWidth: { page: '76rem' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root { color-scheme: dark; }
+    html { background: #0F1217; }
+    body { background: #0F1217; color: #E3E8EF; -webkit-font-smoothing: antialiased; }
+    ::selection { background: rgba(242,179,61,.35); color: #fff; }
+
+    /* ---------- Fondo del hero ---------- */
+    .hero-glow { position: absolute; inset: 0;
+      background:
+        radial-gradient(55rem 28rem at 82% 8%, rgba(242,179,61,.10), transparent 60%),
+        radial-gradient(45rem 30rem at 5% 90%, rgba(62,224,143,.07), transparent 60%); }
+    .grid-floor { position: absolute; left: -40%; right: -40%; bottom: -12%; height: 62%;
+      background-image: linear-gradient(rgba(242,179,61,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(242,179,61,.16) 1px, transparent 1px);
+      background-size: 56px 56px; transform: perspective(520px) rotateX(64deg); transform-origin: bottom;
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 78%); mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 78%);
+      opacity: .55; animation: floor 14s linear infinite; }
+    @keyframes floor { to { background-position: 0 56px; } }
+    .scanlines { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); }
+    .dots { background-image: radial-gradient(rgba(169,179,193,.09) 1px, transparent 1px); background-size: 22px 22px; }
+
+    /* ---------- Texto del nombre ---------- */
+    .name-grad { background: linear-gradient(92deg, #F2B33D 0%, #F7D27E 35%, #3EE08F 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 22px rgba(242,179,61,.25)); }
+
+    /* ---------- LEDs ---------- */
+    .led { width: .5rem; height: .5rem; border-radius: 9999px; display: inline-block; flex: none; }
+    .led-ok { background: #3EE08F; box-shadow: 0 0 0 3px rgba(62,224,143,.14), 0 0 12px rgba(62,224,143,.7); }
+    .led-amber { background: #F2B33D; box-shadow: 0 0 0 3px rgba(242,179,61,.14), 0 0 12px rgba(242,179,61,.6); }
+    .led-alert { background: #FF6B5B; box-shadow: 0 0 0 3px rgba(255,107,91,.14), 0 0 12px rgba(255,107,91,.6); }
+    .led-pulse { animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .35; } }
+
+    /* ---------- Barra de progreso ---------- */
+    #progress { transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #F2B33D, #3EE08F); box-shadow: 0 0 12px rgba(242,179,61,.7); }
+
+    /* ---------- Reveal ---------- */
+    html.js .reveal { opacity: 0; transform: translateY(26px); filter: blur(6px);
+      transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1), filter .85s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--d, 0ms); }
+    html.js .reveal.in { opacity: 1; transform: none; filter: none; }
+
+    /* ---------- Tarjetas con borde iluminado por el cursor ---------- */
+    .gc { position: relative; padding: 1px; border-radius: 16px; background: #262D39; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+    .gc::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(280px circle at var(--mx, -999px) var(--my, -999px), rgba(242,179,61,.95), rgba(62,224,143,.45) 38%, transparent 68%); }
+    .gc-in { position: relative; z-index: 1; border-radius: 15px; background: #13171E; height: 100%; overflow: hidden; }
+    .gc-in::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0; transition: opacity .4s;
+      background: radial-gradient(520px circle at var(--mx, -999px) var(--my, -999px), rgba(242,179,61,.07), transparent 42%); }
+    .gc:hover .gc-in::before { opacity: 1; }
+    .gc:hover { box-shadow: 0 30px 70px -35px rgba(242,179,61,.35); }
+    .gc-in > * { position: relative; z-index: 1; }
+    .lift:hover { transform: translateY(-4px); }
+
+    /* ---------- Botones ---------- */
+    .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: .55rem; border-radius: .6rem; padding: .8rem 1.25rem; font-weight: 600; transition: transform .25s, box-shadow .25s, border-color .25s, color .25s, background .25s; }
+    .btn-primary { background: #F2B33D; color: #0F1217; box-shadow: 0 0 0 1px rgba(242,179,61,.6), 0 12px 32px -12px rgba(242,179,61,.75); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px #F2B33D, 0 0 28px rgba(242,179,61,.55), 0 18px 44px -14px rgba(242,179,61,.85); }
+    .btn-primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform: translateX(-130%); transition: transform .8s; }
+    .btn-primary:hover::after { transform: translateX(130%); }
+    .btn-ghost { border: 1px solid #343D4C; background: rgba(20,24,31,.7); color: #E3E8EF; backdrop-filter: blur(6px); }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: #3EE08F; color: #3EE08F; box-shadow: 0 0 0 1px rgba(62,224,143,.25), 0 0 26px -6px rgba(62,224,143,.5); }
+    .btn-sm { padding: .5rem .85rem; font-size: .85rem; border-radius: .5rem; }
+
+    /* ---------- Medidores LED ---------- */
+    .seg { width: 14px; height: 7px; border-radius: 2px; background: #232A35; transition: background .3s, box-shadow .3s; }
+    .in .seg.on { background: var(--c); box-shadow: 0 0 8px var(--c); }
+    html:not(.js) .seg.on { background: var(--c); }
+
+    /* ---------- Ticker ---------- */
+    .ticker-track { display: flex; width: max-content; animation: ticker 45s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* ---------- Terminal ---------- */
+    #term-out { scrollbar-width: thin; scrollbar-color: #343D4C transparent; }
+    .caret { display: inline-block; width: .55em; height: 1.15em; background: #F2B33D; vertical-align: text-bottom; animation: blink 1.05s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    #term-input { caret-color: #F2B33D; }
+    #term-input:focus-visible { outline: none; }
+    .term-glow { box-shadow: 0 0 0 1px rgba(242,179,61,.18), 0 40px 90px -40px rgba(0,0,0,.9), 0 0 60px -20px rgba(242,179,61,.25); }
+
+    /* ---------- Mockups ---------- */
+    .mock { height: 100%; display: flex; flex-direction: column; border: 1px solid #262D39; border-radius: 11px; background: #0B0E12; overflow: hidden; }
+    .mock-body { flex: 1; min-height: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: #343D4C transparent; }
+    .mock pre { font-family: "JetBrains Mono", ui-monospace, monospace; white-space: pre; margin: 0; }
+    .tab[aria-selected="true"], .seg-btn[aria-pressed="true"] { background: #F2B33D; color: #0F1217; }
+    [hidden] { display: none !important; }
+    .tree-btn[aria-current="true"] { background: rgba(242,179,61,.14); color: #E3E8EF; }
+    .tree-btn[aria-current="true"] svg { color: #F2B33D; }
+    .spark { display: flex; align-items: flex-end; gap: 2px; height: 22px; }
+    .spark i { display: block; width: 4px; border-radius: 1px; background: #3EE08F; opacity: .8; transition: height .5s ease; }
+    .chip-step { transition: background .3s, color .3s, border-color .3s, box-shadow .3s; }
+    .chip-step.is-on { border-color: #F2B33D; color: #F2B33D; box-shadow: 0 0 14px -2px rgba(242,179,61,.5); }
+    .chip-step.is-bad { border-color: #FF6B5B; color: #FF6B5B; box-shadow: 0 0 14px -2px rgba(255,107,91,.5); }
+    .chip-step.is-good { border-color: #3EE08F; color: #3EE08F; box-shadow: 0 0 14px -2px rgba(62,224,143,.5); }
+    .row-sel[aria-pressed="true"] { border-color: #F2B33D; background: rgba(242,179,61,.07); }
+    .vg-seg { transition: width .7s cubic-bezier(.2,.7,.2,1); }
+
+    .highlight { animation: flash 1.9s ease; }
+    @keyframes flash { 0%,100% { box-shadow: 0 0 0 0 rgba(242,179,61,0); } 25% { box-shadow: 0 0 0 4px rgba(242,179,61,.7), 0 0 50px rgba(242,179,61,.4); } }
+
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(90deg); }
+    .chev { transition: transform .2s; }
+
+    .filter-btn { transition: background .2s, color .2s, border-color .2s, box-shadow .2s; }
+    .filter-btn[aria-pressed="true"] { background: #F2B33D; color: #0F1217; border-color: #F2B33D; box-shadow: 0 0 20px -4px rgba(242,179,61,.6); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: #F2B33D; transform: scaleX(0); transition: transform .3s; box-shadow: 0 0 10px rgba(242,179,61,.8); }
+    .nav-link.is-active { color: #E3E8EF; }
+    .nav-link.is-active::after { transform: scaleX(1); }
+
+    #toast { transform: translate(-50%, 24px); opacity: 0; transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s; }
+    #toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    :focus-visible { outline: 2px solid #F2B33D; outline-offset: 3px; border-radius: 6px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      html.js .reveal { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+  <div id="progress" class="fixed top-0 left-0 right-0 h-[2px] z-[60]" aria-hidden="true"></div>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:bg-amber focus:text-ground focus:px-3 focus:py-2 focus:rounded">Saltar al contenido</a>
+
+  <!-- ================================ NAV ================================ -->
+  <header class="sticky top-0 z-50 border-b border-line/80 bg-ground/75 backdrop-blur-xl">
+    <nav class="mx-auto max-w-page px-4 sm:px-6 h-14 flex items-center justify-between gap-4" aria-label="Principal">
+      <a href="#top" class="font-mono text-sm text-soft hover:text-ink whitespace-nowrap">
+        <span class="text-ok">fabrizio</span><span class="text-mute">@</span><span class="text-ink">asir</span><span class="text-mute">:~$</span><span class="caret ml-1 !w-[.45em] !h-[1em]"></span>
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm text-soft">
+        <li><a class="nav-link hover:text-ink transition-colors" href="#sobre-mi">Sobre mí</a></li>
+        <li><a class="nav-link hover:text-ink transition-colors" href="#skills">Habilidades</a></li>
+        <li><a class="nav-link hover:text-ink transition-colors" href="#proyectos">Proyectos</a></li>
+        <li><a class="nav-link hover:text-ink transition-colors" href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-ok/40 bg-ok/10 px-3 py-1 text-xs text-ok hover:bg-ok/20 transition-colors">
+          <span class="led led-ok led-pulse"></span> Disponible para FCT
+        </a>
+        <button id="menu-btn" class="md:hidden p-2 -mr-2 text-soft hover:text-ink" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-line bg-ground">
+      <ul class="px-4 py-3 space-y-1 text-soft">
+        <li><a class="block py-2 hover:text-ink" href="#sobre-mi">Sobre mí</a></li>
+        <li><a class="block py-2 hover:text-ink" href="#skills">Habilidades</a></li>
+        <li><a class="block py-2 hover:text-ink" href="#proyectos">Proyectos</a></li>
+        <li><a class="block py-2 hover:text-ink" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================================ HERO ================================ -->
+    <section id="top" class="relative overflow-hidden border-b border-line">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <div class="grid-floor"></div>
+        <div class="scanlines"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-page px-4 sm:px-6 pt-12 pb-14 sm:pt-20 sm:pb-20 grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-12 lg:gap-14 items-center">
+        <div class="min-w-0">
+          <p class="reveal inline-flex items-center gap-2 rounded-full border border-ok/30 bg-ok/10 px-3 py-1 font-mono text-xs text-ok">
+            <span class="led led-ok led-pulse"></span>Buscando prácticas FCT o puesto junior
+          </p>
+
+          <h1 class="reveal mt-6 font-display font-bold uppercase leading-[.92] tracking-tight text-[3.2rem] sm:text-[4.6rem] lg:text-[5.4rem]" style="--d:80ms" aria-label="Fabrizio Barrial">
+            <span class="block text-ink" data-scramble aria-hidden="true">Fabrizio</span>
+            <span class="block name-grad" data-scramble aria-hidden="true">Barrial</span>
+          </h1>
+
+          <p class="reveal mt-6 font-mono text-sm sm:text-[15px] text-amber" style="--d:160ms">Estudiante de ASIR en Barcelona</p>
+          <p class="reveal mt-3 text-xl sm:text-2xl text-ink font-medium leading-snug max-w-xl" style="--d:220ms">
+            Monto dominios, servidores y redes en mi laboratorio, los rompo a propósito y aprendo a recuperarlos.
+          </p>
+          <p class="reveal mt-4 text-soft leading-relaxed max-w-[56ch]" style="--d:280ms">
+            Samba AD con RAID y backups verificados, Active Directory con GPO, servicios en Docker y laboratorios de ciberseguridad. Busco un equipo de sistemas donde aplicarlo a servicios reales.
+          </p>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3" style="--d:340ms">
+            <a href="#proyectos" class="btn btn-primary"><i data-lucide="layers" class="w-4 h-4"></i>Ver proyectos</a>
+            <a href="CV_Fabrizio_Barrial.pdf" download class="btn btn-ghost"><i data-lucide="download" class="w-4 h-4"></i>Descargar CV</a>
+            <a href="#contacto" class="btn btn-ghost"><i data-lucide="mail" class="w-4 h-4"></i>Contactar</a>
+          </div>
+
+          <dl class="reveal mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden border border-line bg-line font-mono text-xs" style="--d:400ms">
+            <div class="bg-panel/90 p-3"><dt class="text-mute">curso</dt><dd class="mt-1 text-ink">2º ASIR</dd></div>
+            <div class="bg-panel/90 p-3"><dt class="text-mute">ubicación</dt><dd class="mt-1 text-ink">Barcelona</dd></div>
+            <div class="bg-panel/90 p-3"><dt class="text-mute">disponibilidad</dt><dd class="mt-1 text-ok">total</dd></div>
+            <div class="bg-panel/90 p-3"><dt class="text-mute">tu sesión</dt><dd class="mt-1 text-amber" id="session">00:00:00</dd></div>
+          </dl>
+        </div>
+
+        <!-- Terminal -->
+        <div id="terminal-sec" class="reveal relative min-w-0" style="--d:220ms">
+          <div class="relative rounded-2xl border border-line2 bg-void/95 term-glow overflow-hidden">
+            <div class="flex items-center gap-3 px-4 h-11 border-b border-line bg-panel2/90">
+              <div class="flex items-center gap-2" aria-hidden="true">
+                <span class="w-3 h-3 rounded-full bg-alert/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber/80"></span>
+                <span class="w-3 h-3 rounded-full bg-ok/80"></span>
+              </div>
+              <span class="flex-1 text-center font-mono text-xs text-mute truncate">fabrizio@srv-portfolio: ~ — bash — 92×28</span>
+              <span class="font-mono text-[11px] text-ok flex items-center gap-1.5"><span class="led led-ok"></span>ssh</span>
+            </div>
+            <div id="terminal" class="font-mono text-[12.5px] sm:text-[13px] leading-relaxed p-4 sm:p-5 h-[25rem] sm:h-[27rem] flex flex-col cursor-text" role="region" aria-label="Terminal interactiva. Escribe help para ver los comandos.">
+              <div id="term-out" class="flex-1 overflow-y-auto whitespace-pre-wrap break-words" aria-live="polite"></div>
+              <form id="term-form" class="flex items-center gap-2 pt-1" autocomplete="off">
+                <label for="term-input" class="shrink-0"><span class="text-ok">fabrizio</span><span class="text-mute">@</span><span class="text-soft">portfolio</span><span class="text-mute">:~$</span></label>
+                <input id="term-input" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" class="flex-1 min-w-0 bg-transparent outline-none text-ink placeholder:text-line2" placeholder="escribe help y pulsa Enter" aria-label="Comando" />
+              </form>
+            </div>
+          </div>
+          <div class="mt-3 flex flex-wrap items-center gap-2 font-mono text-xs text-mute">
+            <span>Prueba:</span>
+            <button class="term-chip rounded-md border border-line bg-panel px-2 py-1 hover:text-amber hover:border-amber/60 transition-colors" data-cmd="neofetch">neofetch</button>
+            <button class="term-chip rounded-md border border-line bg-panel px-2 py-1 hover:text-amber hover:border-amber/60 transition-colors" data-cmd="skills">skills</button>
+            <button class="term-chip rounded-md border border-line bg-panel px-2 py-1 hover:text-amber hover:border-amber/60 transition-colors" data-cmd="nmap fabrizio">nmap fabrizio</button>
+            <button class="term-chip rounded-md border border-line bg-panel px-2 py-1 hover:text-amber hover:border-amber/60 transition-colors" data-cmd="open coal">open coal</button>
+            <button class="term-chip rounded-md border border-line bg-panel px-2 py-1 hover:text-amber hover:border-amber/60 transition-colors" data-cmd="sudo contratar">sudo contratar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ TICKER ================================ -->
+    <div class="ticker relative border-b border-line bg-void overflow-hidden">
+      <div class="ticker-track py-3 font-mono text-sm text-mute" id="ticker"></div>
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-void to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-void to-transparent"></div>
+    </div>
+
+    <!-- ================================ SOBRE MÍ ================================ -->
+    <section id="sobre-mi" class="relative border-b border-line scroll-mt-14">
+      <div class="mx-auto max-w-page px-4 sm:px-6 py-20 sm:py-24 grid grid-cols-1 lg:grid-cols-[1fr_1.45fr] gap-12">
+        <div class="reveal">
+          <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] leading-tight text-ink">Sobre mí</h2>
+          <p class="mt-3 text-mute font-mono text-sm">cat ~/sobre_mi.txt</p>
+        </div>
+        <div>
+          <div class="space-y-5 text-soft leading-relaxed max-w-[64ch]">
+            <p class="reveal">
+              Estoy en segundo de ASIR en Digitech FP. Trabajo con máquinas virtuales: controladores de dominio con Samba y Windows Server, RAID y LVM, copias con rsync y cron, servicios en contenedores y laboratorios de seguridad aislados.
+              Documento cada práctica como si la fuera a heredar otra persona, con su topología, sus comandos y las pruebas que demuestran que funciona.
+            </p>
+            <p class="reveal">
+              Antes de la informática trabajé en hostelería, de cara al público y en temporada alta. De ahí me llevo algo que también sirve en sistemas: mantener la calma con presión, seguir procedimientos y tratar bien a quien tiene un problema.
+            </p>
+          </div>
+          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="reveal gc" style="--d:0ms"><div class="gc-in p-5">
+              <p class="flex items-center gap-2 text-xs text-mute"><i data-lucide="graduation-cap" class="w-4 h-4 text-amber"></i>Formación</p>
+              <p class="mt-2 text-ink font-medium">CFGS en Administración de Sistemas Informáticos en Red</p>
+              <p class="text-sm text-mute mt-1">Digitech FP, Barcelona. 2025 hasta hoy</p>
+            </div></div>
+            <div class="reveal gc" style="--d:80ms"><div class="gc-in p-5">
+              <p class="flex items-center gap-2 text-xs text-mute"><i data-lucide="zap" class="w-4 h-4 text-amber"></i>Complementaria</p>
+              <p class="mt-2 text-ink font-medium">Instalador eléctrico a domicilio</p>
+              <p class="text-sm text-mute mt-1">Construaprende, Lima. 2025</p>
+            </div></div>
+            <div class="reveal gc" style="--d:160ms"><div class="gc-in p-5">
+              <p class="flex items-center gap-2 text-xs text-mute"><i data-lucide="users" class="w-4 h-4 text-amber"></i>Experiencia</p>
+              <p class="mt-2 text-ink font-medium">Camarero de sala, Seina</p>
+              <p class="text-sm text-mute mt-1">Tossa de Mar. Jun–sep 2026</p>
+            </div></div>
+            <div class="reveal gc" style="--d:240ms"><div class="gc-in p-5">
+              <p class="flex items-center gap-2 text-xs text-mute"><i data-lucide="languages" class="w-4 h-4 text-amber"></i>Idiomas</p>
+              <p class="mt-2 text-ink font-medium">Español nativo, inglés B1</p>
+              <p class="text-sm text-mute mt-1">Catalán en nivel inicial</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ SKILLS ================================ -->
+    <section id="skills" class="relative border-b border-line dots scroll-mt-14">
+      <div class="mx-auto max-w-page px-4 sm:px-6 py-20 sm:py-24">
+        <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] leading-tight text-ink">Habilidades técnicas</h2>
+            <p class="mt-3 text-soft max-w-[58ch]">Herramientas que he usado en prácticas y laboratorios, con una valoración honesta de dónde estoy hoy.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-mute">
+            <span class="inline-flex items-center gap-2"><span class="flex gap-0.5"><span class="seg" style="background:#F2B33D"></span><span class="seg" style="background:#F2B33D"></span></span>básico</span>
+            <span class="inline-flex items-center gap-2"><span class="flex gap-0.5"><span class="seg" style="background:#3EE08F"></span><span class="seg" style="background:#3EE08F"></span><span class="seg" style="background:#3EE08F"></span></span>intermedio</span>
+            <span class="inline-flex items-center gap-2"><span class="flex gap-0.5"><span class="seg" style="background:#3EE08F"></span><span class="seg" style="background:#3EE08F"></span><span class="seg" style="background:#3EE08F"></span><span class="seg" style="background:#3EE08F"></span></span>sólido</span>
+          </div>
+        </div>
+        <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+      </div>
+    </section>
+
+    <!-- ================================ PROYECTOS ================================ -->
+    <section id="proyectos" class="relative border-b border-line scroll-mt-14">
+      <div class="mx-auto max-w-page px-4 sm:px-6 py-20 sm:py-24">
+        <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <div>
+            <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] leading-tight text-ink">Proyectos y laboratorios</h2>
+            <p class="mt-3 text-soft max-w-[62ch]">Cada proyecto muestra el reto, la solución y el resultado, y las vistas se pueden tocar. Son recreaciones de mis capturas, sin direcciones IP ni datos reales.</p>
+          </div>
+          <div class="flex flex-wrap gap-2 lg:justify-end lg:max-w-md" role="group" aria-label="Filtrar proyectos">
+            <button class="filter-btn rounded-full border border-line2 px-4 py-1.5 text-sm text-soft hover:text-ink" data-filter="todos" aria-pressed="true">Todos</button>
+            <button class="filter-btn rounded-full border border-line2 px-4 py-1.5 text-sm text-soft hover:text-ink" data-filter="sistemas" aria-pressed="false">Sistemas</button>
+            <button class="filter-btn rounded-full border border-line2 px-4 py-1.5 text-sm text-soft hover:text-ink" data-filter="seguridad" aria-pressed="false">Seguridad</button>
+            <button class="filter-btn rounded-full border border-line2 px-4 py-1.5 text-sm text-soft hover:text-ink" data-filter="redes" aria-pressed="false">Redes</button>
+            <button class="filter-btn rounded-full border border-line2 px-4 py-1.5 text-sm text-soft hover:text-ink" data-filter="web" aria-pressed="false">Web y BBDD</button>
+          </div>
+        </div>
+
+        <div id="featured"></div>
+        <div id="project-grid" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <p id="empty-state" class="hidden mt-6 text-mute">No hay proyectos en esta categoría. Prueba con <button class="underline" data-reset>todos</button>.</p>
+      </div>
+    </section>
+
+    <!-- ================================ CONTACTO ================================ -->
+    <section id="contacto" class="relative overflow-hidden scroll-mt-14">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true"><div class="hero-glow"></div><div class="scanlines"></div></div>
+      <div class="relative mx-auto max-w-page px-4 sm:px-6 py-20 sm:py-28">
+        <div class="reveal max-w-3xl">
+          <p class="font-mono text-sm text-amber">ssh fabrizio@barcelona</p>
+          <h2 class="mt-4 font-display font-bold uppercase text-4xl sm:text-6xl leading-[.95] text-ink">¿Tienes una plaza de prácticas en tu equipo de sistemas?</h2>
+          <p class="mt-6 text-soft text-lg leading-relaxed max-w-[56ch]">Estoy disponible para FCT, beca o puesto junior en Barcelona, con jornada completa. Escríbeme y te respondo en menos de 24 horas.</p>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Correo -->
+          <div class="reveal gc lift sm:col-span-2 lg:col-span-2" style="--d:0ms"><div class="gc-in p-6 flex flex-col h-full">
+            <div class="flex items-center gap-3">
+              <span class="flex items-center justify-center w-11 h-11 rounded-xl border border-line2 bg-panel2 text-amber"><i data-lucide="mail" class="w-5 h-5"></i></span>
+              <div><p class="text-ink font-semibold">Correo</p><p class="text-xs text-mute">La forma más rápida de hablar conmigo</p></div>
+            </div>
+            <p class="mt-5 font-mono text-sm sm:text-[16px] text-ink break-all">fabriziobarrialtaipe@gmail.com</p>
+            <div class="mt-auto pt-5 flex flex-wrap gap-3">
+              <a href="mailto:fabriziobarrialtaipe@gmail.com?subject=Pr%C3%A1cticas%20ASIR" class="btn btn-primary btn-sm"><i data-lucide="send" class="w-4 h-4"></i>Escribir correo</a>
+              <button id="copy-email" class="btn btn-ghost btn-sm"><i data-lucide="copy" class="w-4 h-4"></i><span>Copiar correo</span></button>
+            </div>
+          </div></div>
+          <!-- GitHub -->
+          <a href="https://github.com/fabrizio2032-SVC" target="_blank" rel="noopener" class="reveal gc lift group block" style="--d:80ms"><div class="gc-in p-6 flex flex-col h-full">
+            <div class="flex items-start justify-between">
+              <span class="flex items-center justify-center w-11 h-11 rounded-xl border border-line2 bg-panel2 text-ink group-hover:text-amber transition-colors"><i data-lucide="github" class="w-5 h-5"></i></span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-mute group-hover:text-amber transition-colors"></i>
+            </div>
+            <p class="mt-5 text-ink font-semibold">GitHub</p>
+            <p class="mt-1 font-mono text-xs text-mute break-all">github.com/fabrizio2032-SVC</p>
+          </div></a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/fabriziobarrial" target="_blank" rel="noopener" class="reveal gc lift group block" style="--d:160ms"><div class="gc-in p-6 flex flex-col h-full">
+            <div class="flex items-start justify-between">
+              <span class="flex items-center justify-center w-11 h-11 rounded-xl border border-line2 bg-panel2 text-ink group-hover:text-amber transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-mute group-hover:text-amber transition-colors"></i>
+            </div>
+            <p class="mt-5 text-ink font-semibold">LinkedIn</p>
+            <p class="mt-1 font-mono text-xs text-mute break-all">linkedin.com/in/fabriziobarrial</p>
+          </div></a>
+          <!-- CV -->
+          <a href="CV_Fabrizio_Barrial.pdf" download class="reveal gc lift group block sm:col-span-2 lg:col-span-4" style="--d:240ms"><div class="gc-in p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+            <span class="flex items-center justify-center w-11 h-11 rounded-xl border border-line2 bg-panel2 text-ink group-hover:text-ok transition-colors shrink-0"><i data-lucide="file-text" class="w-5 h-5"></i></span>
+            <div class="flex-1">
+              <p class="text-ink font-semibold">Currículum en PDF</p>
+              <p class="mt-0.5 font-mono text-xs text-mute">CV_Fabrizio_Barrial.pdf</p>
+            </div>
+            <span class="btn btn-ghost btn-sm self-start sm:self-auto"><i data-lucide="download" class="w-4 h-4"></i>Descargar CV</span>
+          </div></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line">
+    <div class="mx-auto max-w-page px-4 sm:px-6 py-8 flex flex-col sm:flex-row gap-3 justify-between text-sm text-mute">
+      <p>© <span id="year"></span> Fabrizio Barrial. Barcelona.</p>
+      <p class="font-mono text-xs flex items-center gap-2"><span class="led led-ok"></span>HTML + Tailwind, servido desde mi propio dominio .es</p>
+    </div>
+  </footer>
+
+  <!-- Aviso flotante -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 z-[80] flex items-center gap-2 rounded-lg border border-ok/40 bg-panel/95 px-4 py-2.5 font-mono text-sm text-ok shadow-[0_0_30px_-6px_rgba(62,224,143,.5)] backdrop-blur pointer-events-none">
+    <i data-lucide="check-circle-2" class="w-4 h-4"></i><span id="toast-text"></span>
+  </div>
+
+  <script>
+  (() => {
+    'use strict';
+
+    /* =====================================================================
+       CONFIGURACIÓN
+       ===================================================================== */
+    const GITHUB = 'https://github.com/fabrizio2032-SVC';
+    const EMAIL = 'fabriziobarrialtaipe@gmail.com';
+    const CV = 'CV_Fabrizio_Barrial.pdf';
+
+    /* =====================================================================
+       UTILIDADES
+       ===================================================================== */
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const C = (cls, t) => `<span class="${cls}">${t}</span>`;
+    const now = () => new Date().toLocaleTimeString('es-ES', { hour12: false });
+    const today = () => new Date().toISOString().slice(0, 10);
+    const stamp = () => today().replace(/-/g, '');
+    const icons = () => window.lucide && window.lucide.createIcons();
+
+    let toastTimer;
+    function toast(msg) {
+      $('#toast-text').textContent = msg;
+      $('#toast').classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 2400);
+    }
+    function onVisible(el, start, stop) {
+      if (!('IntersectionObserver' in window)) { start(); return; }
+      new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop && stop()), { threshold: 0.15 }).observe(el);
+    }
+    function download(href) {
+      const a = document.createElement('a'); a.href = href; a.download = '';
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    /* =====================================================================
+       DATOS: HABILIDADES (nivel 1-5 · 2 básico, 3 intermedio, 4 sólido)
+       ===================================================================== */
+    const SKILLS = [
+      { title: 'Sistemas y redes', icon: 'server', path: '/srv', items: [
+        ['Windows Server 2022', 4], ['Active Directory, GPO y PSO', 4], ['Samba 4 AD DC', 4], ['Ubuntu Server 24.04', 4],
+        ['RAID con mdadm y LVM', 3], ['CUPS', 3], ['DHCP y DNS', 3], ['TCP/IP y subnetting', 3], ['Cisco Packet Tracer', 3]
+      ]},
+      { title: 'Virtualización y DevOps', icon: 'boxes', path: '/opt', items: [
+        ['VirtualBox', 4], ['Git y GitHub', 3], ['Bash, rsync y cron', 3], ['OpenSSH con claves', 3],
+        ['Apache', 3], ['Clonezilla', 3], ['Docker y Compose', 2], ['Nginx', 2]
+      ]},
+      { title: 'Ciberseguridad', icon: 'shield-check', path: '/var/log', items: [
+        ['Nmap', 3], ['Wireshark', 3], ['auditd y auditoría en GPO', 3], ['Análisis de logs', 3],
+        ['Metasploit (laboratorio)', 2], ['Taxonomía INCIBE-CERT', 2], ['Fail2ban y WireGuard', 2]
+      ]},
+      { title: 'Desarrollo y bases de datos', icon: 'database', path: '/var/www', items: [
+        ['MySQL: consultas, vistas y backup', 4], ['HTML, CSS y JavaScript', 3], ['Python', 3],
+        ['PHP', 2], ['Flask', 2], ['SQLite', 2]
+      ]}
+    ];
+    const LEVEL = { 1: 'nociones', 2: 'básico', 3: 'intermedio', 4: 'sólido', 5: 'experto' };
+
+    /* =====================================================================
+       DATOS: PROYECTOS
+       repo → URL del repositorio · docs → URL de la documentación
+       Si "repo" está vacío, "Ver código" lleva a tu perfil de GitHub.
+       Si "docs" está vacío, el botón "Documentación" no aparece.
+       ===================================================================== */
+    const PROJECTS = [
+      {
+        id: 'glacianova', featured: true, cat: ['sistemas', 'redes'], icon: 'network',
+        title: 'GlaciaNova: dominio Samba AD sobre Ubuntu Server',
+        context: 'Infraestructura completa para una distribuidora ficticia, como consultora NorthByte IT. Trabajo en grupo.',
+        challenge: 'La empresa necesitaba autenticación centralizada para Windows y Linux, carpetas por departamento con permisos, impresión en red, acceso remoto solo para IT y copias de seguridad que se pudieran restaurar de verdad.',
+        solution: [
+          'Ubuntu Server 24.04 como controlador de dominio con Samba 4 (glacianova.local), con DNS interno y DHCP.',
+          'RAID 1 con mdadm creado durante la instalación, con tres arrays separados para sistema, datos y backup.',
+          'UO y grupos de seguridad por departamento, perfiles móviles y clientes Windows 10 Pro y Ubuntu unidos al dominio.',
+          'CUPS como servidor de impresión, SSH restringido al grupo IT_ADM y monitorización con Nagios 4.',
+          'Backup nocturno con rsync y cron (datos, /etc y base de Samba), 7 días de retención, prueba de restauración real y regla 3-2-1.'
+        ],
+        tech: ['Ubuntu Server 24.04', 'Samba 4 AD DC', 'mdadm', 'isc-dhcp-server', 'CUPS', 'OpenSSH', 'Nagios', 'rsync', 'VirtualBox'],
+        repo: 'https://github.com/fabrizio2032-SVC/glacianova-samba-ad', docs: 'https://github.com/fabrizio2032-SVC/glacianova-samba-ad/tree/main/docs'
+      },
+      {
+        id: 'coal', cat: ['sistemas', 'seguridad'], icon: 'shield-alert', status: 'En curso',
+        title: 'Resiliencia frente a ransomware',
+        context: 'Proyecto intermodular basado en un caso real de 2026. Equipo de tres.',
+        challenge: 'Que la organización pueda recuperarse aunque el atacante llegue a ser administrador del dominio: copias que no se puedan borrar ni cifrar, detección temprana y una restauración ensayada.',
+        solution: [
+          'Laboratorio con Windows Server 2022 (AD DS, DNS, GPO), servidor de ficheros Samba y servidor Docker con Nginx, n8n, PostgreSQL y Grafana.',
+          'Bóveda de copias en red aislada con restic en modo append-only, snapshots y copia offline, con credenciales distintas a las del dominio.',
+          'Ficheros canario y alertas por webhook a n8n, que registra, clasifica y lanza la restauración.',
+          'Perímetro con WireGuard, Squid y Fail2ban. Objetivos: RTO de 4 h y RPO de 24 h.'
+        ],
+        tech: ['Windows Server 2022', 'Docker Compose', 'Nginx', 'restic', 'n8n', 'PostgreSQL', 'Grafana', 'WireGuard'],
+        repo: 'https://github.com/fabrizio2032-SVC/ransomware-resiliencia-lab', docs: 'https://github.com/fabrizio2032-SVC/ransomware-resiliencia-lab/tree/main/docs'
+      },
+      {
+        id: 'ad-gpo', cat: ['sistemas'], icon: 'folder-tree',
+        title: 'Active Directory: GPO, PSO y roles FSMO',
+        context: 'Serie de prácticas del módulo de administración de sistemas operativos.',
+        challenge: 'Gestionar un dominio Windows como en una empresa: restricciones por departamento, contraseñas más exigentes para ciertos grupos y un plan para cuando cae un controlador de dominio.',
+        solution: [
+          'GPO enlazadas por UO, con filtrado de seguridad para excluir al grupo de Sistemas.',
+          'Políticas de contraseñas detalladas (PSO) por grupo, verificadas sobre el usuario.',
+          'Unidades de red mapeadas y bloqueo de sesión por GPO, con informe de directivas desde el cliente.',
+          'Roles FSMO por consola, papelera de reciclaje de AD y copia del estado del sistema.'
+        ],
+        tech: ['Windows Server', 'Active Directory', 'GPO', 'PSO', 'FSMO', 'PowerShell', 'RSAT'],
+        repo: 'https://github.com/fabrizio2032-SVC/active-directory-gpo-fsmo', docs: 'https://github.com/fabrizio2032-SVC/active-directory-gpo-fsmo/tree/main/docs'
+      },
+      {
+        id: 'lvm', cat: ['sistemas'], icon: 'hard-drive',
+        title: 'LVM y snapshots para recuperar una wiki',
+        context: 'Práctica de almacenamiento y tolerancia a fallos en Windows y Linux.',
+        challenge: 'Un servidor con una wiki interna (DokuWiki) pierde todo su código por un borrado accidental. Hay que recuperarlo sin reinstalar.',
+        solution: [
+          'Volúmenes RAID 0, 1 y 5 y volúmenes distribuidos en Windows Server con nueve discos virtuales.',
+          'Grupo de volúmenes info-vg y volumen lógico web-lv en ext4, ampliado en caliente a 2,5 GB.',
+          'Snapshot fechado antes del incidente, borrado simulado y restauración desde el snapshot.',
+          'Propuesta de plan de copias para la web y la base de datos MySQL de la wiki.'
+        ],
+        tech: ['LVM', 'ext4', 'RAID 0/1/5', 'Ubuntu Server', 'Windows Server'],
+        repo: 'https://github.com/fabrizio2032-SVC/lvm-snapshots-dokuwiki', docs: 'https://github.com/fabrizio2032-SVC/lvm-snapshots-dokuwiki/tree/main/docs'
+      },
+      {
+        id: 'auditoria', cat: ['seguridad', 'sistemas'], icon: 'scan-eye',
+        title: 'Auditoría de accesos en Windows y Linux',
+        context: 'Práctica de auditoría de sistemas en un dominio mixto.',
+        challenge: 'Saber quién intenta entrar al sistema y quién toca un fichero confidencial, tanto en Windows como en Ubuntu Server.',
+        solution: [
+          'Bloqueo de cuenta tras dos intentos fallidos en la Default Domain Policy.',
+          'Auditoría de accesos correctos y fallidos sobre un fichero sensible para Domain Users.',
+          'Longitud mínima de contraseña en Linux con libpam-pwquality.',
+          'auditd con reglas sobre ficheros y lectura de eventos con ausearch.'
+        ],
+        tech: ['GPO', 'Visor de eventos', 'auditd', 'ausearch', 'libpam-pwquality'],
+        repo: 'https://github.com/fabrizio2032-SVC/auditoria-windows-linux', docs: 'https://github.com/fabrizio2032-SVC/auditoria-windows-linux/tree/main/docs'
+      },
+      {
+        id: 'metasploitable', cat: ['seguridad'], icon: 'radar',
+        title: 'Servicios inseguros: detectar, demostrar y corregir',
+        context: 'Laboratorios en red aislada contra Metasploitable 2.',
+        challenge: 'Un servidor heredado expone FTP con una backdoor conocida y Telnet sin cifrar. Hay que demostrar el riesgo, corregirlo y saber detectarlo en los logs.',
+        solution: [
+          'Enumeración de servicios y versiones con Nmap, relacionada con Cyber Kill Chain y MITRE ATT&CK.',
+          'Verificación controlada con Metasploit y captura con Wireshark de credenciales Telnet en claro, comparadas con SSH.',
+          'Corrección: desactivar los servicios vulnerables y sustituirlos por alternativas cifradas.',
+          'Análisis de logs para encontrar el rastro de cada acción e informe de incidente.'
+        ],
+        tech: ['Nmap', 'Wireshark', 'Metasploit', 'Kali Linux', 'SSH', 'Logs'],
+        repo: 'https://github.com/fabrizio2032-SVC/hardening-servicios-inseguros', docs: 'https://github.com/fabrizio2032-SVC/hardening-servicios-inseguros/tree/main/docs'
+      },
+      {
+        id: 'soc', cat: ['seguridad'], icon: 'siren', status: 'En curso',
+        title: 'SOC escolar: clasificación de amenazas',
+        context: 'Módulo de Seguridad Informática y Alta Disponibilidad, 2º de ASIR.',
+        challenge: 'Antes de monitorizar, un SOC necesita un lenguaje común: qué se protege, por dónde llegan los ataques y qué prioridad tiene cada alerta.',
+        solution: [
+          'Inventario de activos TIC del centro y valoración de su criticidad.',
+          'Clasificación de amenazas con la taxonomía de INCIBE-CERT y CCN-CERT.',
+          'Cuatro niveles de severidad con tiempos de respuesta y responsables.',
+          'Catálogo de riesgos priorizado para las siguientes sesiones.'
+        ],
+        tech: ['INCIBE-CERT', 'CCN-CERT', 'Gestión de riesgos', 'RGPD'],
+        repo: 'https://github.com/fabrizio2032-SVC/soc-escolar', docs: 'https://github.com/fabrizio2032-SVC/soc-escolar/tree/main/docs'
+      },
+      {
+        id: 'veterinaria', cat: ['sistemas', 'web'], icon: 'stethoscope',
+        title: 'Aura IT: servidor y web de la clínica Patitas Felices',
+        context: 'Proyecto en grupo de cuatro, simulando una consultora que vende la solución.',
+        challenge: 'Montar desde cero la infraestructura de una clínica (servidor, usuarios, permisos y redundancia) y darle una web con reserva de citas.',
+        solution: [
+          'Windows Server 2022 con RAID 1, UO, grupos, usuarios y carpetas compartidas con permisos.',
+          'Administración remota con RSAT para que todo el equipo trabajara sobre el mismo servidor.',
+          'Web LAMP en Ubuntu (PHP 8.3 y MySQL) con reserva de citas, usuario MySQL de solo lectura para recepción y SFTP para el administrador.'
+        ],
+        tech: ['Windows Server 2022', 'RAID 1', 'RSAT', 'Apache', 'PHP 8.3', 'MySQL'],
+        repo: 'https://github.com/fabrizio2032-SVC/clinica-veterinaria-lamp', docs: 'https://github.com/fabrizio2032-SVC/clinica-veterinaria-lamp/tree/main/docs'
+      },
+      {
+        id: 'nexatech', cat: ['redes'], icon: 'cable',
+        title: 'Primera LAN de NexaTech en Packet Tracer',
+        context: 'Práctica de redes locales con Cisco Packet Tracer.',
+        challenge: 'Montar una LAN mínima con dos PC, un servidor y un switch, y sobre todo explicar por qué funciona y diagnosticar fallos sin tocar nada a ciegas.',
+        solution: [
+          'Topología en una única subred /24 con cálculo de máscara y direccionamiento.',
+          'Seguimiento de ARP e ICMP en modo simulación y lectura de PDU.',
+          'Diagnóstico de dos incidentes provocados: IP en otra subred y máscaras distintas.'
+        ],
+        tech: ['Cisco Packet Tracer', 'IPv4', 'Subnetting', 'ARP', 'ICMP'],
+        repo: 'https://github.com/fabrizio2032-SVC/nexatech-lan-packet-tracer', docs: 'https://github.com/fabrizio2032-SVC/nexatech-lan-packet-tracer/tree/main/docs'
+      }
+    ];
+
+    /* =====================================================================
+       MOCKUPS: ventana base
+       ===================================================================== */
+    function win(title, body, { badge = '', term = false } = {}) {
+      return `
+      <div class="mock">
+        <div class="flex items-center gap-3 px-3 h-8 border-b border-line bg-panel2 shrink-0">
+          <span class="flex gap-1.5" aria-hidden="true"><span class="w-2.5 h-2.5 rounded-full bg-line2"></span><span class="w-2.5 h-2.5 rounded-full bg-line2"></span><span class="w-2.5 h-2.5 rounded-full bg-line2"></span></span>
+          <span class="flex-1 truncate font-mono text-[11px] text-mute">${title}</span>${badge}
+        </div>
+        <div class="mock-body ${term ? 'p-3 font-mono text-[11.5px] leading-[1.65] text-soft' : ''}">${body}</div>
+      </div>`;
+    }
+    const P = (h = 'srv-01') => `${C('text-ok', 'admin@' + h)}${C('text-mute', ':~$')} `;
+    const mini = (label, attrs = '', icon = 'play') => `<button type="button" ${attrs} class="inline-flex items-center gap-1.5 rounded-md border border-line2 bg-panel px-2.5 py-1 font-mono text-[11px] text-ink hover:border-amber hover:text-amber disabled:opacity-40 disabled:pointer-events-none transition-colors"><i data-lucide="${icon}" class="w-3.5 h-3.5"></i><span>${label}</span></button>`;
+    const badge = (t, cls = 'text-amber') => `<span class="font-mono text-[10px] ${cls}">${t}</span>`;
+
+    const MOCKS = {};
+
+    /* ---------------- GlaciaNova (destacado, 3 pestañas) ---------------- */
+    const AD_TREE = {
+      Computers: [['monitor', 'win-ice01', 'Equipo', 'Windows 10 Pro, unido al dominio'], ['monitor', 'ubu-ice01', 'Equipo', 'Ubuntu 24.04, unido al dominio'], ['printer', 'impresora-01', 'CUPS', 'Publicada en red']],
+      Ventas: [['users', 'Ventas', 'Grupo de seguridad', 'RW en &#92;&#92;srv-ice01&#92;ventas'], ['user', 'ventas01', 'Usuario', 'Perfil móvil'], ['user', 'ventas02', 'Usuario', 'Perfil móvil']],
+      Logistica: [['users', 'Logistica', 'Grupo de seguridad', 'RW en &#92;&#92;srv-ice01&#92;logistica'], ['user', 'logistica01', 'Usuario', 'Perfil móvil']],
+      Administracion: [['users', 'Administracion', 'Grupo de seguridad', 'RW en &#92;&#92;srv-ice01&#92;administracion'], ['user', 'admin01', 'Usuario', 'Perfil móvil']],
+      IT: [['users', 'IT_ADM', 'Grupo de seguridad', 'SSH al servidor, todas las carpetas e impresión'], ['user', 'it.soporte01', 'Usuario', 'Miembro de IT_ADM']]
+    };
+    MOCKS.glacianova = {
+      tabs: [['consola', 'Consola'], ['directorio', 'Directorio AD'], ['backups', 'Backups en vivo']],
+      panels: {
+        consola: () => win('srv-ice01 · bash', `<pre>${P('srv-ice01')}sudo samba-tool domain level show
+Domain and forest function level for domain 'DC=glacianova,DC=local'
+Forest function level: ${C('text-ink', '(Windows) 2008 R2')}
+Domain function level: ${C('text-ink', '(Windows) 2008 R2')}
+
+${P('srv-ice01')}systemctl is-active samba-ad-dc isc-dhcp-server cups nagios4 ssh
+${C('text-ok', 'active')}   ${C('text-mute', '# samba-ad-dc')}
+${C('text-ok', 'active')}   ${C('text-mute', '# isc-dhcp-server')}
+${C('text-ok', 'active')}   ${C('text-mute', '# cups')}
+${C('text-ok', 'active')}   ${C('text-mute', '# nagios4')}
+${C('text-ok', 'active')}   ${C('text-mute', '# ssh (solo IT_ADM)')}
+
+${P('srv-ice01')}cat /proc/mdstat | grep -A1 ^md
+md0 : active raid1 sdb2[1] sda2[0]   ${C('text-mute', '# sistema')}
+      [2/2] ${C('text-ok', '[UU]')}
+md1 : active raid1 sdb3[1] sda3[0]   ${C('text-mute', '# /datos')}
+      [2/2] ${C('text-ok', '[UU]')}
+md2 : active raid1 sdb4[1] sda4[0]   ${C('text-mute', '# /backup')}
+      [2/2] ${C('text-ok', '[UU]')}
+${P('srv-ice01')}<span class="caret"></span></pre>`, { term: true }),
+
+        directorio: () => win('Usuarios y equipos de Active Directory · glacianova.local', `
+          <div class="grid grid-cols-[9.5rem_1fr] sm:grid-cols-[11rem_1fr] h-full text-[12px]">
+            <div class="border-r border-line bg-panel p-2">
+              <p class="flex items-center gap-1.5 px-1.5 py-1 text-ink font-medium"><i data-lucide="network" class="w-3.5 h-3.5 text-amber"></i>glacianova.local</p>
+              <ul class="mt-1 space-y-0.5">
+                ${Object.keys(AD_TREE).map((ou, i) => `<li><button type="button" class="tree-btn w-full flex items-center gap-1.5 rounded px-1.5 py-1 pl-4 text-left text-soft hover:text-ink hover:bg-panel2 transition-colors" data-ou="${ou}" aria-current="${i === 1}"><i data-lucide="${ou === 'Computers' ? 'hard-drive' : 'folder'}" class="w-3.5 h-3.5 text-mute"></i>${ou}</button></li>`).join('')}
+              </ul>
+              <p class="mt-3 px-1.5 text-[10.5px] text-mute">Haz clic en una UO</p>
+            </div>
+            <div class="p-2.5 min-w-0" data-ou-detail></div>
+          </div>`),
+
+        backups: () => win('srv-ice01 · tail -f /backup/logs/backup.log', `
+          <div class="p-3 grid grid-cols-3 gap-2 font-mono text-[10.5px] border-b border-line">
+            ${[['md0', 'sistema', 38], ['md1', '/datos', 52], ['md2', '/backup', 41]].map(([d, l, v]) => `
+              <div class="rounded border border-line bg-panel p-2">
+                <div class="flex justify-between gap-1"><span class="text-ink">${d}</span><span class="text-ok">[UU]</span></div>
+                <div class="mt-1.5 h-1.5 rounded bg-line overflow-hidden"><div class="h-full rounded bg-ok/80" style="width:${v}%"></div></div>
+                <div class="mt-1 text-mute truncate">${l} · ${v}%</div>
+              </div>`).join('')}
+          </div>
+          <div class="p-3 font-mono text-[11.5px] leading-[1.7] text-soft whitespace-pre" data-log></div>`, { badge: `<span class="flex items-center gap-1.5 font-mono text-[10px] text-alert"><span class="led led-alert led-pulse"></span>EN VIVO</span>` })
+      },
+      init(root) {
+        // Árbol AD
+        const detail = $('[data-ou-detail]', root);
+        const renderOU = ou => {
+          detail.innerHTML = `
+            <p class="font-mono text-[11px] text-mute mb-2 truncate">OU=${ou},DC=glacianova,DC=local</p>
+            <table class="w-full text-left">
+              <thead class="text-mute text-[11px]"><tr><th class="font-medium pb-1.5">Nombre</th><th class="font-medium pb-1.5">Tipo</th><th class="font-medium pb-1.5 hidden sm:table-cell">Detalle</th></tr></thead>
+              <tbody>${AD_TREE[ou].map(([ic, n, t, d]) => `
+                <tr class="border-t border-line text-soft"><td class="py-1.5 pr-2"><span class="flex items-center gap-1.5 text-ink"><i data-lucide="${ic}" class="w-3.5 h-3.5 ${ic === 'users' ? 'text-ok' : ic === 'user' ? 'text-info' : 'text-mute'}"></i>${n}</span></td><td class="pr-2">${t}</td><td class="hidden sm:table-cell text-mute">${d}</td></tr>`).join('')}
+              </tbody>
+            </table>`;
+          icons();
+        };
+        $$('.tree-btn', root).forEach(b => b.addEventListener('click', () => {
+          $$('.tree-btn', root).forEach(x => x.setAttribute('aria-current', String(x === b)));
+          renderOU(b.dataset.ou);
+        }));
+        renderOU('Ventas');
+
+        // Log de backups en vivo
+        const log = $('[data-log]', root);
+        const body = log.closest('.mock-body');
+        let gen = 0, running = false, inView = false;
+        const line = html => { const d = document.createElement('div'); d.innerHTML = `${C('text-mute', '[' + now() + ']')} ${html}`; log.appendChild(d); body.scrollTop = body.scrollHeight; return d; };
+        const bar = p => `[${C('text-ok', '█'.repeat(p / 10))}${C('text-line2', '░'.repeat(10 - p / 10))}] ${String(p).padStart(3)}%`;
+        async function cycle(g) {
+          log.innerHTML = '';
+          line(`${C('text-amber', 'cron')} ejecuta backup_completo.sh`);
+          for (const src of ['/datos', '/etc', '/var/lib/samba']) {
+            if (g !== gen) return;
+            const l = line(`rsync ${C('text-ink', src.padEnd(15))} ${bar(0)}`);
+            for (let p = 10; p <= 100; p += 10) {
+              await wait(110); if (g !== gen) return;
+              l.innerHTML = `${C('text-mute', '[' + now() + ']')} rsync ${C('text-ink', src.padEnd(15))} ${bar(p)}`;
+            }
+            l.innerHTML += ` ${C('text-ok', 'OK')}`;
+            await wait(250);
+          }
+          const tail = [
+            `destino: /backup/completas/${today()}`,
+            C('text-mute', 'retención: borradas copias de más de 7 días'),
+            `copia externa, regla 3-2-1 ${C('text-ok', 'OK')}`,
+            `restauración de prueba ${C('text-ok', '✓ coincide')}`,
+            `${C('text-ok', 'FIN')} estado OK, próxima esta noche`
+          ];
+          for (const t of tail) { if (g !== gen) return; line(t); await wait(420); }
+          if (reduce) return;
+          await wait(4200);
+          if (g === gen && running) cycle(g);
+        }
+        const tabActive = () => !$('[data-panel="backups"]', root).hidden;
+        const update = () => {
+          const should = inView && tabActive();
+          if (should && !running) { running = true; gen++; cycle(gen); }
+          if (!should && running) { running = false; gen++; }
+        };
+        onVisible(root, () => { inView = true; update(); }, () => { inView = false; update(); });
+        root.addEventListener('tabchange', update);
+      }
+    };
+
+    /* ---------------- COAL: contenedores + simulación ---------------- */
+    MOCKS.coal = {
+      html: () => win('srv-svc01 · docker stats + n8n', `
+        <div class="p-3 text-[11px]">
+          <table class="w-full font-mono">
+            <thead class="text-mute text-[10px]"><tr><th class="text-left font-medium pb-1.5">CONTENEDOR</th><th class="text-left font-medium pb-1.5">CPU</th><th class="text-right font-medium pb-1.5">%</th><th class="text-right font-medium pb-1.5 hidden sm:table-cell">MEM</th></tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+          <div class="mt-3 flex flex-wrap items-center gap-1 font-mono text-[10.5px]">
+            ${['canario', 'webhook', 'n8n', 'restic restore'].map((s, i) => `${i ? '<span class="text-mute">→</span>' : ''}<span class="chip-step rounded border border-line2 px-1.5 py-0.5 text-mute" data-step="${i}">${s}</span>`).join('')}
+          </div>
+          <div class="mt-2.5 rounded border border-line bg-panel p-2 font-mono text-[10.5px] min-h-[2.6rem] flex items-center gap-2" data-status></div>
+          <div class="mt-2.5 flex flex-wrap gap-2">${mini('Simular cifrado', 'data-attack', 'zap')}${mini('Reiniciar', 'data-reset hidden', 'rotate-ccw')}</div>
+        </div>`, { badge: badge('maqueta') }),
+      init(root) {
+        const cs = [{ n: 'nginx', b: 2, mem: '38 MiB' }, { n: 'n8n', b: 6, mem: '212 MiB' }, { n: 'postgres', b: 3, mem: '96 MiB' }, { n: 'grafana', b: 4, mem: '121 MiB' }];
+        cs.forEach(c => { c.h = Array.from({ length: 14 }, () => c.b + Math.random() * 3); });
+        $('[data-rows]', root).innerHTML = cs.map(c => `<tr class="border-t border-line"><td class="py-1.5 text-ink"><span class="inline-flex items-center gap-1.5"><span class="led led-ok"></span>${c.n}</span></td><td><span class="spark" data-spark="${c.n}">${c.h.map(() => '<i></i>').join('')}</span></td><td class="text-right text-soft" data-pct="${c.n}"></td><td class="text-right text-mute hidden sm:table-cell">${c.mem}</td></tr>`).join('');
+        let spike = false;
+        const draw = () => cs.forEach(c => {
+          const bars = $$(`[data-spark="${c.n}"] i`, root);
+          c.h.forEach((v, i) => { bars[i].style.height = Math.min(100, v * 4) + '%'; bars[i].style.background = v > 14 ? '#FF6B5B' : '#3EE08F'; });
+          $(`[data-pct="${c.n}"]`, root).textContent = c.h[c.h.length - 1].toFixed(1) + '%';
+        });
+        const tick = () => {
+          cs.forEach(c => {
+            let v = c.b + Math.random() * 3 - 1;
+            if (spike && c.n === 'n8n') v = 16 + Math.random() * 8;
+            if (spike && c.n === 'postgres') v = 9 + Math.random() * 4;
+            c.h.push(Math.max(.5, v)); c.h.shift();
+          });
+          draw();
+        };
+        draw();
+        let iv = null;
+        onVisible(root, () => { if (!iv && !reduce) iv = setInterval(tick, 1100); }, () => { clearInterval(iv); iv = null; });
+
+        const steps = $$('[data-step]', root), status = $('[data-status]', root);
+        const atk = $('[data-attack]', root), rst = $('[data-reset]', root);
+        const setStatus = (led, txt, cls = 'text-soft') => { status.innerHTML = `<span class="led ${led} ${led === 'led-alert' ? 'led-pulse' : ''}"></span><span class="${cls}">${txt}</span>`; };
+        const idle = () => setStatus('led-ok', 'Sin incidentes. Copias verificadas en la bóveda append-only.');
+        idle();
+        atk.addEventListener('click', async () => {
+          atk.disabled = true;
+          steps[0].classList.add('is-bad'); setStatus('led-alert', 'srv-docs01: fichero canario modificado. Posible cifrado masivo.', 'text-alert'); await wait(1000);
+          steps[1].classList.add('is-on'); setStatus('led-amber', 'Webhook enviado a n8n con la huella del evento.', 'text-amber'); await wait(900);
+          spike = true; tick(); steps[2].classList.add('is-on'); setStatus('led-alert', 'n8n: incidente SEV-1 registrado en PostgreSQL y aviso enviado.', 'text-alert'); await wait(1300);
+          steps[3].classList.add('is-on'); setStatus('led-amber', 'restic restore desde la bóveda aislada a un entorno limpio…', 'text-amber'); await wait(1500);
+          spike = false; steps.forEach(s => { s.classList.remove('is-on', 'is-bad'); s.classList.add('is-good'); });
+          setStatus('led-ok', 'Servicio restaurado. Las copias seguían intactas: el atacante no pudo borrarlas.', 'text-ok');
+          rst.hidden = false;
+        });
+        rst.addEventListener('click', () => {
+          steps.forEach(s => s.classList.remove('is-on', 'is-bad', 'is-good'));
+          idle(); rst.hidden = true; atk.disabled = false;
+        });
+      }
+    };
+
+    /* ---------------- AD: consola GPMC interactiva ---------------- */
+    const GPMC = {
+      ddp: { name: 'Default Domain Policy', icon: 'scroll-text', rows: [['Vinculada a', 'techcorp.local'], ['Directivas de cuenta', 'contraseñas y bloqueo del dominio'], ['Aplicación', 'regla LSDOU: local, sitio, dominio, OU'], ['Comprobación', 'gpresult /r en CL-STATION01']] },
+      restr: { name: 'GPO_Restriccions_Estacions', icon: 'scroll-text', rows: [['Vinculada a', 'TechCorp › Departamentos'], ['Usuario', 'prohibido el Panel de control y la Configuración'], ['Equipo', 'almacenamiento extraíble: denegar todo'], ['GG_Sistemes', '<span class="text-alert">✗ denegar «Aplicar directiva»</span>']] },
+      unid: { name: 'Unidades de red y sesión', icon: 'scroll-text', rows: [['Unidades asignadas', 'S: y T: → &#92;&#92;DC-TECHCORP&#92;Compartido'], ['Destinatarios', 'unidad T: solo para GG_Sistemes'], ['Protector de pantalla', 'con contraseña, 600 segundos'], ['Verificado con', 'gpupdate /force y gpresult']] },
+      pso: { name: 'PSO de GG_Sistemes', icon: 'key-round', rows: [['Creada con', 'New-ADFineGrainedPasswordPolicy'], ['Aplicada a', 'GG_Sistemes (grupo, no OU: las OU no tienen SID)'], ['Asignación', 'Add-ADFineGrainedPasswordPolicySubject'], ['Comprobación', 'Get-ADUserResultantPasswordPolicy']] },
+      fsmo: { name: 'Roles FSMO', icon: 'crown', rows: [['Roles', 'esquema, nombres, RID, PDC e infraestructura'], ['Transferencia', 'Move-ADDirectoryServerOperationMasterRole'], ['Emergencia', 'confiscación (seize) si el DC no responde'], ['Salud', 'dcdiag: NTDS, KDC, NETLOGON, DFSR']] }
+    };
+    MOCKS['ad-gpo'] = {
+      html: () => win('Administración de directivas de grupo · techcorp.local', `
+        <div class="grid grid-cols-[10rem_1fr] sm:grid-cols-[11.5rem_1fr] h-full text-[11.5px]">
+          <div class="border-r border-line bg-panel p-2 space-y-0.5">
+            <p class="flex items-center gap-1.5 px-1 py-1 text-ink font-medium"><i data-lucide="network" class="w-3.5 h-3.5 text-amber"></i>techcorp.local</p>
+            ${[['ddp', 0], ['__Departamentos', 0], ['restr', 1], ['unid', 1], ['__Contraseñas', 0], ['pso', 1], ['fsmo', 0]].map(([k, lvl]) =>
+              k.startsWith('__')
+                ? `<p class="flex items-center gap-1.5 px-1 py-1 pl-3 text-mute"><i data-lucide="folder" class="w-3.5 h-3.5"></i>${k.slice(2)}</p>`
+                : `<button type="button" class="tree-btn w-full flex items-center gap-1.5 rounded px-1 py-1 ${lvl ? 'pl-6' : 'pl-3'} text-left text-soft hover:text-ink hover:bg-panel2 transition-colors" data-gpo="${k}" aria-current="${k === 'restr'}"><i data-lucide="${GPMC[k].icon}" class="w-3.5 h-3.5 text-mute shrink-0"></i><span class="truncate">${GPMC[k].name}</span></button>`
+            ).join('')}
+          </div>
+          <div class="p-3 min-w-0" data-gpo-detail></div>
+        </div>`),
+      init(root) {
+        const d = $('[data-gpo-detail]', root);
+        const show = k => {
+          const g = GPMC[k];
+          d.innerHTML = `<p class="font-display text-[15px] text-ink font-semibold">${g.name}</p>
+            <dl class="mt-2.5 space-y-1.5">${g.rows.map(([a, b]) => `<div class="rounded border border-line bg-panel px-2 py-1.5"><dt class="text-mute text-[10.5px]">${a}</dt><dd class="text-ink">${b}</dd></div>`).join('')}</dl>
+            <p class="mt-2.5 font-mono text-[10.5px] text-ok flex items-center gap-1.5"><span class="led led-ok"></span>Estado: aplicada correctamente</p>`;
+        };
+        $$('.tree-btn', root).forEach(b => b.addEventListener('click', () => {
+          $$('.tree-btn', root).forEach(x => x.setAttribute('aria-current', String(x === b)));
+          show(b.dataset.gpo);
+        }));
+        show('restr');
+      }
+    };
+
+    /* ---------------- LVM: snapshot paso a paso ---------------- */
+    MOCKS.lvm = {
+      html: () => win('srv-01 · info-vg', `
+        <div class="p-3 border-b border-line">
+          <div class="flex justify-between font-mono text-[10.5px] text-mute"><span>info-vg · 2 discos de 5 GB</span><span data-free>libre 7,5 GB</span></div>
+          <div class="mt-1.5 h-4 rounded bg-line overflow-hidden flex">
+            <div class="vg-seg h-full bg-ok/80" style="width:25%"></div>
+            <div class="vg-seg h-full bg-amber/90" style="width:0%" data-snap></div>
+          </div>
+          <div class="mt-1.5 flex gap-3 font-mono text-[10.5px]"><span class="flex items-center gap-1 text-soft"><span class="w-2 h-2 rounded-sm bg-ok"></span>web-lv 2,5G</span><span class="flex items-center gap-1 text-soft"><span class="w-2 h-2 rounded-sm bg-amber"></span>snapshot 500M</span></div>
+        </div>
+        <div class="p-3 font-mono text-[11px] leading-[1.6] text-soft whitespace-pre" data-out></div>
+        <div class="px-3 pb-3 flex flex-wrap gap-2">${mini('1 · Snapshot', 'data-s="1"', 'camera')}${mini('2 · Borrado', 'data-s="2" disabled', 'trash-2')}${mini('3 · Restaurar', 'data-s="3" disabled', 'rotate-ccw')}${mini('Repetir', 'data-s="0" hidden', 'repeat')}</div>`),
+      init(root) {
+        const out = $('[data-out]', root), snap = $('[data-snap]', root), free = $('[data-free]', root);
+        const body = out.closest('.mock-body');
+        const btn = n => $(`[data-s="${n}"]`, root);
+        const name = `web-lv_snapshot_${stamp()}`;
+        const add = html => { out.innerHTML += '\n' + html; body.scrollTop = body.scrollHeight; };
+        const initial = () => {
+          out.innerHTML = `${P()}sudo lvs info-vg\n  LV      VG       Attr        LSize\n  ${C('text-ok', 'web-lv')}  info-vg  -wi-ao----  2.50g\n${P()}ls /var/webprod\n${C('text-ink', 'dokuwiki-2020-07-29/')}`;
+          snap.style.width = '0%'; free.textContent = 'libre 7,5 GB';
+          btn(1).disabled = false; btn(2).disabled = true; btn(3).disabled = true; btn(0).hidden = true;
+        };
+        initial();
+        btn(1).addEventListener('click', () => {
+          add(`${P()}sudo lvcreate -L 500M -s -n ${name} /dev/info-vg/web-lv\n  Logical volume "${C('text-amber', name)}" created.`);
+          snap.style.width = '5%'; free.textContent = 'libre 7,0 GB';
+          btn(1).disabled = true; btn(2).disabled = false;
+        });
+        btn(2).addEventListener('click', () => {
+          add(`${P()}sudo rm -rf /var/webprod/dokuwiki-2020-07-29\n${P()}ls /var/webprod\n${C('text-alert', '(vacío) la wiki ya no responde')}`);
+          btn(2).disabled = true; btn(3).disabled = false;
+        });
+        btn(3).addEventListener('click', () => {
+          add(`${P()}sudo umount /var/webprod\n${P()}sudo lvconvert --merge /dev/info-vg/${name}\n  Merging of volume ${name} started.\n${P()}sudo lvchange -an /dev/info-vg/web-lv && sudo lvchange -ay /dev/info-vg/web-lv\n${P()}sudo mount /var/webprod && ls /var/webprod\n${C('text-ok', 'dokuwiki-2020-07-29/   ✓ wiki recuperada')}`);
+          snap.style.width = '0%'; free.textContent = 'libre 7,5 GB';
+          btn(3).disabled = true; btn(0).hidden = false;
+        });
+        btn(0).addEventListener('click', initial);
+      }
+    };
+
+    /* ---------------- Auditoría: Linux / Windows ---------------- */
+    MOCKS.auditoria = {
+      html: () => win('auditoría · srv-dc01 y srv-01', `
+        <div class="flex items-center justify-between gap-2 px-3 pt-3">
+          <div class="flex gap-1 rounded-md border border-line bg-panel p-0.5">
+            <button type="button" class="seg-btn rounded px-2.5 py-1 text-[11px] text-soft" data-os="win" aria-pressed="true">Windows</button>
+            <button type="button" class="seg-btn rounded px-2.5 py-1 text-[11px] text-soft" data-os="lin" aria-pressed="false">Linux · auditd</button>
+          </div>
+          <span class="font-mono text-[10.5px] text-mute" data-counter></span>
+        </div>
+        <div class="p-3" data-pane="win">
+          <div class="rounded border border-line bg-panel">
+            <div class="flex items-center justify-between gap-2 px-2 py-1.5 border-b border-line text-[11px]"><span class="text-mute flex items-center gap-1.5"><i data-lucide="scroll-text" class="w-3.5 h-3.5"></i>Visor de eventos · Seguridad</span><span data-acct class="font-mono text-[10.5px] text-ok">usuario1: activa</span></div>
+            <ul class="divide-y divide-line text-[11px] font-mono max-h-[8.4rem] overflow-auto" data-events></ul>
+          </div>
+          <div class="mt-2.5">${mini('Simular contraseña errónea', 'data-fail', 'key-round')}</div>
+        </div>
+        <div class="p-3" data-pane="lin" hidden>
+          <div class="font-mono text-[11px] leading-[1.6] text-soft whitespace-pre" data-lin></div>
+          <div class="mt-2.5">${mini('Editar topsecurity.txt', 'data-edit', 'file-pen')}</div>
+        </div>`),
+      init(root) {
+        const panes = $$('[data-pane]', root), segs = $$('.seg-btn', root);
+        segs.forEach(s => s.addEventListener('click', () => {
+          segs.forEach(x => x.setAttribute('aria-pressed', String(x === s)));
+          panes.forEach(p => { p.hidden = p.dataset.pane !== s.dataset.os; });
+        }));
+        let fails = 0;
+        const ev = $('[data-events]', root), acct = $('[data-acct]', root), counter = $('[data-counter]', root), fb = $('[data-fail]', root);
+        const label = $('span', fb);
+        const setCounter = () => { counter.textContent = `intentos fallidos: ${fails}/2`; };
+        const push = (led, id, txt) => { const li = document.createElement('li'); li.className = 'flex items-center gap-2 px-2 py-1.5'; li.innerHTML = `<span class="led ${led}"></span><span class="text-ink w-9 shrink-0">${id}</span><span class="text-soft truncate">${txt}</span>`; ev.prepend(li); };
+        const setAcct = locked => { acct.textContent = locked ? 'usuario1: BLOQUEADA' : 'usuario1: activa'; acct.className = `font-mono text-[10.5px] ${locked ? 'text-alert' : 'text-ok'}`; };
+        push('led-ok', '4624', 'Inicio de sesión correcto · admin');
+        setCounter();
+        fb.addEventListener('click', () => {
+          if (fails >= 2) {
+            fails = 0; push('led-ok', '4767', 'Cuenta desbloqueada por el administrador');
+            setAcct(false); label.textContent = 'Simular contraseña errónea'; setCounter(); return;
+          }
+          fails++; push('led-alert', '4625', `Error de inicio de sesión · usuario1 (intento ${fails})`);
+          if (fails === 2) { push('led-amber', '4740', 'Cuenta bloqueada · usuario1'); setAcct(true); label.textContent = 'Desbloquear como admin'; }
+          setCounter();
+        });
+        const lin = $('[data-lin]', root);
+        lin.innerHTML = `${P()}sudo auditctl -w /srv/confidencial -p rwa -k acceso_fichero\n${P()}sudo ausearch -k acceso_fichero -i\n${C('text-mute', '<no matches>')}`;
+        $('[data-edit]', root).addEventListener('click', () => {
+          lin.innerHTML += `\n----\ntime-&gt;${C('text-ink', new Date().toLocaleString('es-ES'))}\ntype=PATH name=${C('text-amber', '/srv/confidencial/topsecurity.txt')}\ntype=SYSCALL comm=nano auid=${C('text-ink', 'usuario1')} success=${C('text-ok', 'yes')}`;
+          const b = lin.closest('.mock-body'); b.scrollTop = b.scrollHeight;
+        });
+      }
+    };
+
+    /* ---------------- Servicios inseguros: antes / después ---------------- */
+    MOCKS.metasploitable = {
+      html: () => win('nmap -sV metasploitable · red aislada', `
+        <div class="p-3">
+          <div class="flex gap-1 rounded-md border border-line bg-panel p-0.5 w-max">
+            <button type="button" class="seg-btn rounded px-2.5 py-1 text-[11px] text-soft" data-state="antes" aria-pressed="true">Antes</button>
+            <button type="button" class="seg-btn rounded px-2.5 py-1 text-[11px] text-soft" data-state="despues" aria-pressed="false">Después del hardening</button>
+          </div>
+          <div class="mt-3" data-risk></div>
+          <table class="mt-3 w-full text-left font-mono text-[11px]">
+            <thead class="text-mute text-[10px]"><tr><th class="font-medium pb-1.5">PUERTO</th><th class="font-medium pb-1.5">SERVICIO</th><th class="font-medium pb-1.5">ESTADO</th></tr></thead>
+            <tbody data-ports></tbody>
+          </table>
+          <div class="mt-3 rounded border border-line bg-panel p-2 font-mono text-[10.5px]" data-wire></div>
+        </div>`),
+      init(root) {
+        const S = {
+          antes: {
+            risk: ['bg-alert', '85%', 'text-alert', 'Superficie de ataque alta: 2 servicios críticos'],
+            ports: [['21/tcp', 'ftp vsftpd 2.3.4', '<span class="text-alert">abierto · backdoor CVE-2011-2523</span>'], ['23/tcp', 'telnet', '<span class="text-alert">abierto · texto plano</span>'], ['22/tcp', 'ssh', '<span class="text-soft">abierto</span>']],
+            wire: `<p class="text-mute">Wireshark · Seguir flujo TCP (telnet)</p><p class="mt-1 text-soft">login: <span class="text-alert">ms••••••</span>  password: <span class="text-alert">••••••••</span> ← en claro</p>`
+          },
+          despues: {
+            risk: ['bg-ok', '20%', 'text-ok', 'Superficie reducida: solo SSH cifrado'],
+            ports: [['21/tcp', 'ftp', '<span class="text-ok">cerrado · desactivado</span>'], ['23/tcp', 'telnet', '<span class="text-ok">cerrado · desactivado</span>'], ['22/tcp', 'ssh', '<span class="text-ok">abierto · cifrado ✓</span>']],
+            wire: `<p class="text-mute">Wireshark · Seguir flujo TCP (ssh)</p><p class="mt-1 text-ok">SSH-2.0 · contenido cifrado, no se leen credenciales ✓</p>`
+          }
+        };
+        const set = k => {
+          const s = S[k];
+          $('[data-risk]', root).innerHTML = `<p class="font-mono text-[10.5px] ${s.risk[2]}">${s.risk[3]}</p><div class="mt-1 h-1.5 rounded bg-line overflow-hidden"><div class="h-full ${s.risk[0]} rounded vg-seg" style="width:${s.risk[1]}"></div></div>`;
+          $('[data-ports]', root).innerHTML = s.ports.map(([p, sv, st]) => `<tr class="border-t border-line"><td class="py-1.5 pr-2 text-ink">${p}</td><td class="pr-2 text-soft">${sv}</td><td>${st}</td></tr>`).join('');
+          $('[data-wire]', root).innerHTML = s.wire;
+          $$('.seg-btn', root).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.state === k)));
+        };
+        $$('.seg-btn', root).forEach(b => b.addEventListener('click', () => set(b.dataset.state)));
+        set('antes');
+      }
+    };
+
+    /* ---------------- SOC: matriz de severidad ---------------- */
+    const SEV = [
+      ['SEV-1', 'Crítica', 'Ransomware cifrando el NAS', '< 15 min', 'Coordinación TIC y dirección; INCIBE-CERT/CCN-CERT y AEPD si procede', '#FF6B5B'],
+      ['SEV-2', 'Alta', 'Cuenta de profesor comprometida', '< 1 h', 'Responsable TIC', '#F2B33D'],
+      ['SEV-3', 'Media', 'Troyano en un equipo de aula', '< 4 h', 'Analista de turno', '#5CC8FF'],
+      ['SEV-4', 'Baja', 'Escaneo de puertos bloqueado', '< 24 h', 'Revisión diaria', '#3EE08F']
+    ];
+    MOCKS.soc = {
+      html: () => win('soc-escolar · matriz de severidad', `
+        <div class="p-3 space-y-1.5 text-[11.5px]">
+          ${SEV.map(([s, n, e, t, , c], i) => `
+            <button type="button" class="row-sel w-full grid grid-cols-[3.4rem_1fr_4.4rem] items-center gap-2 rounded border border-line bg-panel px-2 py-1.5 text-left hover:border-line2 transition-colors" data-sev="${i}" aria-pressed="${i === 0}">
+              <span class="font-mono" style="color:${c}">${s}</span>
+              <span class="min-w-0"><span class="text-ink">${n}</span><span class="block truncate text-mute">${e}</span></span>
+              <span class="font-mono text-right text-ink flex items-center justify-end gap-1.5"><span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${c};box-shadow:0 0 8px ${c}"></span>${t}</span>
+            </button>`).join('')}
+          <div class="rounded border border-line bg-void p-2 font-mono text-[10.5px] leading-relaxed" data-sev-detail></div>
+        </div>`),
+      init(root) {
+        const d = $('[data-sev-detail]', root);
+        const show = i => {
+          const [s, n, , t, who, c] = SEV[i];
+          d.innerHTML = `<span style="color:${c}">${s} ${n.toUpperCase()}</span> <span class="text-mute">· respuesta ${esc(t)}</span><br><span class="text-soft">Responde: ${who}</span>`;
+          $$('[data-sev]', root).forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.sev === i)));
+        };
+        $$('[data-sev]', root).forEach(b => b.addEventListener('click', () => show(+b.dataset.sev)));
+        show(0);
+      }
+    };
+
+    /* ---------------- Veterinaria: web + base de datos ---------------- */
+    MOCKS.veterinaria = {
+      html: () => win('patitas-felices.local/registro.php', `
+        <div class="text-[11px]">
+          <div class="flex items-center justify-between px-3 py-2 bg-[#F4F6F8] text-[#24313F]">
+            <span class="font-semibold flex items-center gap-1.5"><i data-lucide="paw-print" class="w-3.5 h-3.5 text-[#2F8F83]"></i>Patitas Felices</span>
+            <span class="hidden sm:flex gap-3 text-[#5B6878]"><span>Inicio</span><span>Animales</span><span>Madrid</span><span class="text-[#2F8F83] font-medium">Registrar Caso</span></span>
+          </div>
+          <form class="p-3 bg-white text-[#24313F]" data-form>
+            <p class="font-semibold text-[13px]">Reserva una cita</p>
+            <div class="mt-2 grid grid-cols-2 gap-2">
+              <label class="block min-w-0"><span class="text-[#5B6878]">Mascota</span><input data-name maxlength="16" class="mt-0.5 w-full rounded border border-[#D5DBE1] px-2 py-1 outline-none focus:border-[#2F8F83] bg-white" value="Max" /></label>
+              <label class="block min-w-0"><span class="text-[#5B6878]">Especie</span><select data-pet class="mt-0.5 w-full rounded border border-[#D5DBE1] px-1 py-1 bg-white"><option>Perro</option><option>Gato</option><option>Mono</option><option>Conejo</option></select></label>
+              <label class="block min-w-0"><span class="text-[#5B6878]">Dueño</span><input data-owner maxlength="16" class="mt-0.5 w-full rounded border border-[#D5DBE1] px-2 py-1 outline-none focus:border-[#2F8F83] bg-white" value="Laura G." /></label>
+              <label class="block min-w-0"><span class="text-[#5B6878]">Fecha</span><input data-date type="date" class="mt-0.5 w-full rounded border border-[#D5DBE1] px-1 py-[3px] bg-white" /></label>
+            </div>
+            <div class="mt-2.5 flex items-center justify-between gap-2">
+              <button class="rounded bg-[#2F8F83] hover:bg-[#287a70] px-3 py-1.5 text-white font-medium transition-colors" data-submit>Confirmar reserva</button>
+              <span class="font-mono text-[10px] text-[#5B6878] truncate" data-msg>POST → registro.php</span>
+            </div>
+          </form>
+          <div class="p-3 font-mono text-[10.5px]">
+            <p class="text-mute truncate">mysql&gt; SELECT * FROM pacientes ORDER BY id DESC LIMIT 3;</p>
+            <table class="mt-1.5 w-full text-left"><thead class="text-mute"><tr><th class="font-medium">id</th><th class="font-medium">mascota</th><th class="font-medium">especie</th><th class="font-medium">dueño</th><th class="font-medium">fecha</th></tr></thead><tbody data-db class="text-soft"></tbody></table>
+          </div>
+        </div>`, { badge: `<span class="font-mono text-[10px] text-ok flex items-center gap-1"><i data-lucide="database" class="w-3 h-3"></i>LAMP</span>` }),
+      init(root) {
+        const d = (n) => { const t = new Date(); t.setDate(t.getDate() + n); return t.toISOString().slice(0, 10); };
+        $('[data-date]', root).value = d(3);
+        const rows = [[12, 'Luna', 'Gato', 'Carlos R.', d(1)], [11, 'Coco', 'Mono', 'Ana P.', d(2)]];
+        const db = $('[data-db]', root), msg = $('[data-msg]', root), sub = $('[data-submit]', root);
+        const draw = fresh => { db.innerHTML = rows.slice(0, 3).map((r, i) => `<tr class="${i === 0 && fresh ? 'text-ok' : ''}">${r.map(c => `<td class="py-0.5 pr-2 whitespace-nowrap">${esc(c)}</td>`).join('')}</tr>`).join(''); };
+        draw(false);
+        $('[data-form]', root).addEventListener('submit', async e => {
+          e.preventDefault();
+          sub.disabled = true; sub.textContent = 'Enviando…'; msg.textContent = 'mysqli → INSERT INTO pacientes …';
+          await wait(700);
+          rows.unshift([rows[0][0] + 1, ($('[data-name]', root).value.trim() || 'Sin nombre').slice(0, 12), $('[data-pet]', root).value, ($('[data-owner]', root).value.trim() || 'Anónimo').slice(0, 12), $('[data-date]', root).value || d(3)]);
+          draw(true);
+          msg.innerHTML = '<span style="color:#2F6F66">✓ ¡Te esperamos!</span>';
+          sub.disabled = false; sub.textContent = 'Confirmar reserva';
+        });
+      }
+    };
+
+    /* ---------------- NexaTech: ping animado ---------------- */
+    MOCKS.nexatech = {
+      html: () => win('Packet Tracer · PT01 NexaTech · simulación', `
+        <div class="p-3">
+          <svg viewBox="0 0 320 132" class="w-full h-[8.6rem]" role="img" aria-label="Topología: PC-A, PC-B y SRV1 conectados al switch SW1">
+            <g stroke="#343D4C" stroke-width="1.5"><line x1="60" y1="30" x2="160" y2="104"/><line x1="160" y1="30" x2="160" y2="104"/><line x1="260" y1="30" x2="160" y2="104"/></g>
+            <g font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">
+              ${[['PC-A', 60], ['PC-B', 160], ['SRV1', 260]].map(([n, x]) => `<rect x="${x - 23}" y="14" width="46" height="22" rx="5" fill="#191E27" stroke="#343D4C"/><text x="${x}" y="29" fill="#E3E8EF">${n}</text>`).join('')}
+              <rect x="126" y="96" width="68" height="24" rx="5" fill="#14181F" stroke="#F2B33D"/><text x="160" y="112" fill="#F2B33D">SW1</text>
+              <text x="96" y="74" fill="#7A8494">Fa0/1</text><text x="176" y="68" fill="#7A8494">Fa0/2</text><text x="226" y="74" fill="#7A8494">Fa0/3</text>
+            </g>
+            <g data-packets></g>
+          </svg>
+          <div class="mt-1 flex flex-wrap items-center gap-1 font-mono text-[10px]">
+            ${['ARP request', 'ARP reply', 'ICMP echo', 'echo reply'].map((s, i) => `${i ? '<span class="text-mute">→</span>' : ''}<span class="chip-step rounded border border-line2 px-1.5 py-0.5 text-mute" data-pstep="${i}">${s}</span>`).join('')}
+          </div>
+          <div class="mt-2 grid grid-cols-[1fr_auto] gap-3 items-end">
+            <div class="rounded border border-line bg-panel p-2 font-mono text-[10px] min-w-0">
+              <p class="text-mute truncate">SW1# show mac address-table</p>
+              <div data-mac class="mt-1 text-soft min-h-[2.4em] whitespace-pre"></div>
+            </div>
+            ${mini('ping PC-B', 'data-ping', 'send')}
+          </div>
+        </div>`, { badge: badge('/24', 'text-mute') }),
+      init(root) {
+        const NS = 'http://www.w3.org/2000/svg';
+        const g = $('[data-packets]', root);
+        const pt = { 'PC-A': [60, 30], 'PC-B': [160, 30], SRV1: [260, 30], SW1: [160, 104] };
+        const steps = $$('[data-pstep]', root), mac = $('[data-mac]', root), btn = $('[data-ping]', root);
+        const move = (from, to, color, dur = 650) => new Promise(res => {
+          if (reduce) return res();
+          const c = document.createElementNS(NS, 'circle');
+          c.setAttribute('r', '5'); c.setAttribute('fill', color); c.setAttribute('style', `filter:drop-shadow(0 0 4px ${color})`);
+          g.appendChild(c);
+          const [x1, y1] = pt[from], [x2, y2] = pt[to];
+          const t0 = performance.now();
+          const f = t => {
+            const k = Math.min(1, (t - t0) / dur), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+            c.setAttribute('cx', x1 + (x2 - x1) * e); c.setAttribute('cy', y1 + (y2 - y1) * e);
+            if (k < 1) requestAnimationFrame(f); else { c.remove(); res(); }
+          };
+          requestAnimationFrame(f);
+        });
+        const table = [];
+        const emptyMac = () => { mac.innerHTML = C('text-mute', '(tabla vacía)'); };
+        const learn = (port, host) => { if (!table.some(r => r[0] === port)) table.push([port, host]); mac.innerHTML = table.map(([p, h]) => `${C('text-ink', p)}  aaaa.bbbb.${h === 'PC-A' ? '0001' : '0002'}  ${C('text-mute', '← ' + h)}`).join('\n'); };
+        const on = (i, cls) => { steps.forEach(s => s.classList.remove('is-on', 'is-good')); steps[i].classList.add(cls); };
+        emptyMac();
+        btn.addEventListener('click', async () => {
+          btn.disabled = true; table.length = 0; emptyMac();
+          on(0, 'is-on'); await move('PC-A', 'SW1', '#F2B33D'); learn('Fa0/1', 'PC-A');
+          await Promise.all([move('SW1', 'PC-B', '#F2B33D'), move('SW1', 'SRV1', '#F2B33D')]);
+          on(1, 'is-on'); await move('PC-B', 'SW1', '#F2B33D'); learn('Fa0/2', 'PC-B'); await move('SW1', 'PC-A', '#F2B33D');
+          on(2, 'is-good'); await move('PC-A', 'SW1', '#3EE08F'); await move('SW1', 'PC-B', '#3EE08F');
+          on(3, 'is-good'); await move('PC-B', 'SW1', '#3EE08F'); await move('SW1', 'PC-A', '#3EE08F');
+          steps.forEach(s => s.classList.add('is-good'));
+          btn.disabled = false;
+        });
+      }
+    };
+
+    /* =====================================================================
+       RENDER: HABILIDADES
+       ===================================================================== */
+    $('#skills-grid').innerHTML = SKILLS.map((cat, ci) => `
+      <article class="reveal gc" style="--d:${ci * 90}ms"><div class="gc-in">
+        <header class="flex items-center gap-3 px-5 py-4 border-b border-line bg-panel2/60">
+          <span class="flex items-center justify-center w-10 h-10 rounded-xl border border-line2 bg-panel text-amber shadow-[0_0_20px_-6px_rgba(242,179,61,.6)]"><i data-lucide="${cat.icon}" class="w-[18px] h-[18px]"></i></span>
+          <h3 class="font-display font-semibold text-lg text-ink flex-1">${cat.title}</h3>
+          <span class="font-mono text-xs text-mute">${cat.path}</span>
+        </header>
+        <ul class="px-5 py-2.5 divide-y divide-line/70">
+          ${cat.items.map(([name, lvl]) => `
+            <li class="flex items-center justify-between gap-4 py-2.5">
+              <span class="text-sm text-ink">${esc(name)}</span>
+              <span class="flex items-center gap-3 shrink-0">
+                <span class="hidden sm:inline font-mono text-[11px] text-mute w-[4.6rem] text-right">${LEVEL[lvl]}</span>
+                <span class="flex gap-[3px]" role="img" aria-label="Nivel ${lvl} de 5, ${LEVEL[lvl]}">
+                  ${[1, 2, 3, 4, 5].map(i => `<span class="seg ${i <= lvl ? 'on' : ''}" style="--c:${lvl <= 2 ? '#F2B33D' : '#3EE08F'};transition-delay:${200 + i * 90}ms"></span>`).join('')}
+                </span>
+              </span>
+            </li>`).join('')}
+        </ul>
+      </div></article>`).join('');
+
+    /* =====================================================================
+       RENDER: PROYECTOS
+       ===================================================================== */
+    const CAT_LABEL = { sistemas: 'Sistemas', seguridad: 'Seguridad', redes: 'Redes', web: 'Web y BBDD' };
+    const chips = arr => arr.map(t => `<li class="rounded-md border border-line bg-panel2 px-2 py-0.5 font-mono text-[11px] text-soft">${esc(t)}</li>`).join('');
+    const tags = p => p.cat.map(c => `<span class="text-xs text-mute">${CAT_LABEL[c]}</span>`).join('<span class="text-line2">/</span>');
+    const statusBadge = p => p.status ? `<span class="inline-flex items-center gap-1.5 rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 text-xs text-amber"><span class="led led-amber led-pulse"></span>${esc(p.status)}</span>` : '';
+    const solutionList = (p, cls) => `<ul class="${cls}">${p.solution.map(s => `<li class="flex gap-3"><span class="mt-[.55em] led led-ok"></span><span>${esc(s)}</span></li>`).join('')}</ul>`;
+    const buttons = p => {
+      let h = `<a href="${esc(p.repo || GITHUB)}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i data-lucide="github" class="w-4 h-4"></i>Ver código</a>`;
+      if (p.docs) h += `<a href="${esc(p.docs)}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i data-lucide="book-open" class="w-4 h-4"></i>Documentación</a>`;
+      return h;
+    };
+
+    function featuredCard(p) {
+      const m = MOCKS[p.id];
+      return `
+      <article id="p-${p.id}" data-cat="${p.cat.join(' ')}" class="project reveal gc"><div class="gc-in grid grid-cols-1 lg:grid-cols-[1fr_1.18fr]">
+        <div class="min-w-0 p-6 sm:p-8">
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-amber/15 border border-amber/30 px-2.5 py-0.5 text-xs font-medium text-amber"><i data-lucide="star" class="w-3 h-3"></i>Proyecto principal</span>
+            <span class="flex items-center gap-2">${tags(p)}</span>
+          </div>
+          <h3 class="mt-4 font-display font-bold text-2xl sm:text-[2rem] text-ink leading-tight">${esc(p.title)}</h3>
+          <p class="mt-2 text-sm text-mute">${esc(p.context)}</p>
+          <h4 class="mt-6 text-sm font-semibold text-amber">El reto</h4>
+          <p class="mt-1.5 text-soft leading-relaxed max-w-[62ch]">${esc(p.challenge)}</p>
+          <h4 class="mt-6 text-sm font-semibold text-ok">La solución implementada</h4>
+          ${solutionList(p, 'mt-2 space-y-2 text-soft leading-relaxed max-w-[62ch]')}
+          <ul class="mt-6 flex flex-wrap gap-1.5">${chips(p.tech)}</ul>
+          <div class="mt-6 flex flex-wrap gap-3">${buttons(p)}</div>
+        </div>
+        <div class="min-w-0 border-t lg:border-t-0 lg:border-l border-line bg-void/50 p-4 sm:p-5 flex flex-col" data-mock="${p.id}">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
+            <p class="text-xs text-mute flex items-center gap-2"><i data-lucide="eye" class="w-3.5 h-3.5"></i>Resultado del despliegue</p>
+            <div class="flex gap-1 rounded-lg border border-line bg-panel p-0.5" role="tablist" aria-label="Vistas del proyecto">
+              ${m.tabs.map(([k, l], i) => `<button type="button" role="tab" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" class="tab rounded-md px-2.5 py-1 text-xs text-soft hover:text-ink transition-colors">${l}</button>`).join('')}
+            </div>
+          </div>
+          <div class="flex-1 min-h-[25rem] lg:min-h-[27rem]">
+            ${m.tabs.map(([k], i) => `<div role="tabpanel" id="panel-${k}" data-panel="${k}" aria-labelledby="tab-${k}" class="h-full" ${i ? 'hidden' : ''}>${m.panels[k]()}</div>`).join('')}
+          </div>
+        </div>
+      </div></article>`;
+    }
+
+    function card(p, i) {
+      return `
+      <article id="p-${p.id}" data-cat="${p.cat.join(' ')}" class="project reveal gc lift min-w-0" style="--d:${(i % 2) * 110}ms"><div class="gc-in flex flex-col">
+        <div class="p-3 pb-0"><div class="h-[20rem]" data-mock="${p.id}">${MOCKS[p.id].html()}</div></div>
+        <div class="flex flex-col flex-1 p-6 pt-5">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <span class="flex items-center gap-2 text-amber"><i data-lucide="${p.icon}" class="w-4 h-4"></i><span class="flex items-center gap-2">${tags(p)}</span></span>
+            ${statusBadge(p)}
+          </div>
+          <h3 class="mt-3 font-display font-semibold text-xl text-ink leading-snug">${esc(p.title)}</h3>
+          <p class="mt-1 text-sm text-mute">${esc(p.context)}</p>
+          <h4 class="mt-4 text-sm font-semibold text-amber">El reto</h4>
+          <p class="mt-1 text-soft leading-relaxed">${esc(p.challenge)}</p>
+          <details class="mt-4">
+            <summary class="inline-flex items-center gap-1.5 text-sm font-semibold text-ok hover:text-ink transition-colors"><i data-lucide="chevron-right" class="chev w-4 h-4"></i>La solución implementada</summary>
+            ${solutionList(p, 'mt-3 space-y-2 text-sm text-soft leading-relaxed')}
+          </details>
+          <ul class="mt-5 flex flex-wrap gap-1.5">${chips(p.tech)}</ul>
+          <div class="mt-auto pt-6 flex flex-wrap gap-3">${buttons(p)}</div>
+        </div>
+      </div></article>`;
+    }
+
+    $('#featured').innerHTML = PROJECTS.filter(p => p.featured).map(featuredCard).join('');
+    $('#project-grid').innerHTML = PROJECTS.filter(p => !p.featured).map(card).join('');
+
+    // Pestañas del proyecto destacado
+    $$('[role="tablist"]').forEach(list => {
+      const tabs = $$('[role="tab"]', list);
+      const root = list.closest('[data-mock]');
+      const select = t => {
+        tabs.forEach(x => {
+          const on = x === t;
+          x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+        root.dispatchEvent(new Event('tabchange'));
+      };
+      tabs.forEach((t, i) => {
+        t.addEventListener('click', () => select(t));
+        t.addEventListener('keydown', e => {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+          select(n); n.focus();
+        });
+      });
+    });
+
+    // Iniciar todos los mockups
+    $$('[data-mock]').forEach(root => {
+      try { MOCKS[root.dataset.mock].init(root); }
+      catch (err) { console.error('Mockup', root.dataset.mock, err); }
+    });
+
+    /* =====================================================================
+       TICKER
+       ===================================================================== */
+    const TICK = ['Samba AD', 'Windows Server', 'Active Directory', 'Ubuntu Server', 'GPO', 'RAID 1', 'LVM', 'Docker', 'Nginx', 'restic', 'Nmap', 'Wireshark', 'auditd', 'MySQL', 'Python', 'Bash', 'CUPS', 'Nagios', 'Packet Tracer', 'Git'];
+    const tickHTML = TICK.map(t => `<span class="px-5 whitespace-nowrap">${t}</span><span class="text-amber">◆</span>`).join('');
+    $('#ticker').innerHTML = tickHTML + tickHTML;
+    $('#ticker').setAttribute('aria-hidden', 'true');
+
+    /* =====================================================================
+       FILTROS
+       ===================================================================== */
+    const filterBtns = $$('.filter-btn');
+    function applyFilter(f) {
+      let visible = 0;
+      $$('.project').forEach(el => {
+        const show = f === 'todos' || el.dataset.cat.split(' ').includes(f);
+        el.classList.toggle('hidden', !show);
+        if (show) { visible++; el.classList.add('in'); }
+      });
+      filterBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === f)));
+      $('#empty-state').classList.toggle('hidden', visible > 0);
+    }
+    filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+    $('[data-reset]').addEventListener('click', () => applyFilter('todos'));
+
+    /* =====================================================================
+       REVEAL + SCROLLSPY + PROGRESO
+       ===================================================================== */
+    if ('IntersectionObserver' in window && !reduce) {
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      $$('.reveal').forEach(el => io.observe(el));
+    } else {
+      $$('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    const links = $$('.nav-link');
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + e.target.id));
+      }), { rootMargin: '-45% 0px -50% 0px' });
+      ['top', 'sobre-mi', 'skills', 'proyectos', 'contacto'].forEach(id => spy.observe(document.getElementById(id)));
+    }
+
+    const progress = $('#progress');
+    const onScroll = () => { const h = document.documentElement; progress.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`; };
+    document.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    /* =====================================================================
+       BRILLO DE BORDES QUE SIGUE AL CURSOR
+       ===================================================================== */
+    let px = -9999, py = -9999, rafId = 0;
+    const paint = () => {
+      rafId = 0;
+      $$('.gc').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -300 || r.top > innerHeight + 300) return;
+        el.style.setProperty('--mx', `${px - r.left}px`);
+        el.style.setProperty('--my', `${py - r.top}px`);
+      });
+    };
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; if (!rafId) rafId = requestAnimationFrame(paint); }, { passive: true });
+      document.addEventListener('scroll', () => { if (!rafId) rafId = requestAnimationFrame(paint); }, { passive: true });
+    }
+
+    /* =====================================================================
+       NOMBRE CON EFECTO DE DECODIFICACIÓN
+       ===================================================================== */
+    const GLYPHS = '!<>-_/[]{}=+*^?#01ABCDEFX';
+    $$('[data-scramble]').forEach((el, idx) => {
+      if (reduce) return;
+      const final = el.textContent.trim(); let frame = 0;
+      const queue = [...final].map((ch, i) => ({ ch, start: Math.floor(Math.random() * 10) + idx * 8, end: Math.floor(Math.random() * 14) + 18 + i * 3 + idx * 8 }));
+      const step = () => {
+        let done = 0;
+        el.innerHTML = queue.map(q => {
+          if (frame >= q.end) { done++; return esc(q.ch); }
+          if (frame >= q.start) return `<span class="text-amber/80">${esc(GLYPHS[Math.floor(Math.random() * GLYPHS.length)])}</span>`;
+          return `<span class="opacity-0">${esc(q.ch)}</span>`;
+        }).join('');
+        frame++;
+        if (done < queue.length) requestAnimationFrame(step); else el.textContent = final;
+      };
+      setTimeout(() => requestAnimationFrame(step), 250);
+    });
+
+    /* =====================================================================
+       SESIÓN, MENÚ, CORREO, AÑO
+       ===================================================================== */
+    const t0 = Date.now();
+    setInterval(() => {
+      const s = Math.floor((Date.now() - t0) / 1000);
+      $('#session').textContent = [s / 3600, (s % 3600) / 60, s % 60].map(v => String(Math.floor(v)).padStart(2, '0')).join(':');
+    }, 1000);
+
+    const menuBtn = $('#menu-btn'), mobileMenu = $('#mobile-menu');
+    menuBtn.addEventListener('click', () => { const open = mobileMenu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', String(open)); });
+    $$('a', mobileMenu).forEach(a => a.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+
+    async function copyEmail() {
+      let ok = true;
+      try { await navigator.clipboard.writeText(EMAIL); }
+      catch (e) {
+        const ta = document.createElement('textarea'); ta.value = EMAIL; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+        ta.remove();
+      }
+      toast(ok ? 'Correo copiado al portapapeles' : 'Copia manual: ' + EMAIL);
+      const b = $('#copy-email'), lbl = $('span', b);
+      lbl.textContent = ok ? '¡Copiado!' : 'Cópialo a mano';
+      b.style.borderColor = '#3EE08F'; b.style.color = '#3EE08F';
+      setTimeout(() => { lbl.textContent = 'Copiar correo'; b.style.borderColor = ''; b.style.color = ''; }, 2200);
+    }
+    $('#copy-email').addEventListener('click', copyEmail);
+    $('#year').textContent = new Date().getFullYear();
+
+    /* =====================================================================
+       TERMINAL INTERACTIVA
+       ===================================================================== */
+    const out = $('#term-out'), input = $('#term-input'), form = $('#term-form');
+    const history = []; let hIdx = -1, skipBoot = false;
+    const PROMPT = `${C('text-ok', 'fabrizio')}${C('text-mute', '@')}${C('text-soft', 'portfolio')}${C('text-mute', ':~$')} `;
+    const print = html => { const d = document.createElement('div'); d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; return d; };
+    const tWait = ms => new Promise(r => setTimeout(r, reduce || skipBoot ? 0 : ms));
+
+    const goTo = (id, highlight) => setTimeout(() => {
+      const el = document.getElementById(id); if (!el) return;
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      if (highlight) { el.classList.add('in'); el.classList.remove('highlight'); void el.offsetWidth; el.classList.add('highlight'); }
+    }, 450);
+
+    const ASCII = String.raw`   _   ___ ___ ___
+  /_\ / __|_ _| _ \
+ / _ \\__ \| ||   /
+/_/ \_\___/___|_|_\
+`;
+
+    const FILES = {
+      'sobre_mi.txt': () => 'Estudiante de 2º de ASIR en Digitech FP (Barcelona).\nMe gusta montar infraestructura, romperla en el laboratorio\ny documentar cómo recuperarla.',
+      'motivacion.txt': () => 'Quiero ver cómo se administra una infraestructura de verdad:\nincidencias reales, cambios planificados y backups que se restauran.\nAprendo rápido, documento lo que hago y no me da miedo preguntar.',
+      'contacto.txt': () => COMMANDS.contacto()
+    };
+
+    const COMMANDS = {
+      help: () => [
+        C('text-ink', 'Comandos disponibles'),
+        `  ${C('text-amber', 'whoami')}                 quién soy`,
+        `  ${C('text-amber', 'neofetch')}               ficha del sistema`,
+        `  ${C('text-amber', 'skills')}                 mis habilidades con nivel`,
+        `  ${C('text-amber', 'proyectos')}              lista de laboratorios`,
+        `  ${C('text-amber', 'open')} ${C('text-mute', '<proyecto>')}        ir a un proyecto (ej. open lvm)`,
+        `  ${C('text-amber', 'contacto')}               correo, GitHub y LinkedIn`,
+        `  ${C('text-amber', 'cv')}                     descargar mi CV en PDF`,
+        `  ${C('text-amber', 'motivacion')}             por qué quiero hacer prácticas`,
+        `  ${C('text-amber', 'systemctl status fabrizio')}`,
+        `  ${C('text-amber', 'nmap fabrizio')}, ${C('text-amber', 'ping fabrizio')}, ${C('text-amber', 'ls')}, ${C('text-amber', 'cat')} ${C('text-mute', '<fichero>')}`,
+        `  ${C('text-amber', 'history')}, ${C('text-amber', 'clear')}`,
+        C('text-mute', 'Tab autocompleta, ↑ ↓ recorren el historial, Ctrl+L limpia')
+      ].join('\n'),
+
+      whoami: () => `${C('text-ink', 'Fabrizio Barrial')}\nEstudiante de 2º de ASIR en Digitech FP, Barcelona\nEstado: ${C('text-ok', 'buscando prácticas FCT o puesto junior')}`,
+
+      neofetch: () => {
+        const art = ASCII.split('\n');
+        const info = [
+          `${C('text-ok', 'fabrizio')}@${C('text-ok', 'portfolio')}`,
+          C('text-mute', '──────────────────────'),
+          `${C('text-amber', 'OS')}      ASIR 2º curso, Digitech FP`,
+          `${C('text-amber', 'Host')}    Barcelona, ES`,
+          `${C('text-amber', 'Uptime')}  estudiando desde 2025`,
+          `${C('text-amber', 'Shell')}   bash, PowerShell`,
+          `${C('text-amber', 'Stack')}   Samba AD, Windows Server, Docker`,
+          `${C('text-amber', 'Labs')}    ${PROJECTS.length} proyectos documentados`,
+          `${C('text-amber', 'Idioma')}  ES nativo, EN B1, CA inicial`,
+          `${C('text-amber', 'Estado')}  ${C('text-ok', 'disponible para FCT')}`,
+          '',
+          ['#FF6B5B', '#F2B33D', '#3EE08F', '#5CC8FF', '#A9B3C1', '#343D4C'].map(c => `<span style="background:${c}">   </span>`).join('')
+        ];
+        if (out.clientWidth < 560) return C('text-amber', esc(ASCII)) + '\n' + info.join('\n');
+        return info.map((l, i) => C('text-amber', esc((art[i] || '').padEnd(20))) + '  ' + l).join('\n');
+      },
+
+      skills: () => SKILLS.map(c => `${C('text-amber', '[' + c.title + ']')}\n` + c.items.map(([n, l]) =>
+        `  ${esc(n.padEnd(34))} ${C(l >= 3 ? 'text-ok' : 'text-amber', '▮'.repeat(l))}${C('text-line2', '▯'.repeat(5 - l))} ${C('text-mute', LEVEL[l])}`).join('\n')).join('\n'),
+
+      proyectos: () => PROJECTS.map(p => `${C(p.status ? 'text-amber' : 'text-ok', '●')} ${C('text-ink', p.id.padEnd(15))} ${esc(p.title)}`).join('\n') + `\n${C('text-mute', 'Escribe open <nombre>, por ejemplo: open coal')}`,
+
+      contacto: () => `${C('text-amber', 'mail')}      ${EMAIL}\n${C('text-amber', 'github')}    github.com/fabrizio2032-SVC\n${C('text-amber', 'linkedin')}  linkedin.com/in/fabriziobarrial\n${C('text-mute', 'Escribe "copiar" para copiar el correo.')}`,
+      copiar: () => { copyEmail(); return `Correo copiado ${C('text-ok', '✓')}`; },
+      cv: () => { download(CV); toast('Descargando CV_Fabrizio_Barrial.pdf'); return `Descargando ${C('text-ink', CV)}… ${C('text-ok', '✓')}`; },
+      motivacion: () => FILES['motivacion.txt'](),
+
+      'systemctl status fabrizio': () => [
+        `${C('text-ok', '●')} fabrizio.service - Estudiante de ASIR buscando FCT`,
+        `     Loaded: loaded (/etc/systemd/system/fabrizio.service; ${C('text-ok', 'enabled')})`,
+        `     Active: ${C('text-ok', 'active (running)')} desde 2025`,
+        `   Main PID: 2025 (motivacion)`,
+        `      Tasks: Samba AD, Windows Server, Docker, ciberseguridad`,
+        `     Memory: una documentación por cada práctica`,
+        `     CGroup: /barcelona/digitech-fp/asir`,
+        C('text-mute', `${new Date().toLocaleDateString('es-ES')} fabrizio[2025]: Listo para incorporarse a un equipo de sistemas.`)
+      ].join('\n'),
+
+      'nmap fabrizio': () => [
+        `Starting Nmap 7.94 ( https://nmap.org )`,
+        `Nmap scan report for ${C('text-ink', 'fabrizio.bcn')}`,
+        `Host is up (0.0010s latency).`,
+        `PORT      STATE     SERVICE`,
+        `22/tcp    ${C('text-ok', 'open')}      ssh-aprendizaje-continuo`,
+        `80/tcp    ${C('text-ok', 'open')}      http-trabajo-en-equipo`,
+        `443/tcp   ${C('text-ok', 'open')}      https-ganas-de-aportar`,
+        `3389/tcp  ${C('text-ok', 'open')}      rdp-disponibilidad-total`,
+        `8080/tcp  ${C('text-amber', 'filtered')}  experiencia-profesional ${C('text-mute', '(pendiente de tu FCT)')}`,
+        `Nmap done: 1 host up`
+      ].join('\n'),
+
+      ls: () => `${C('text-amber', 'proyectos/')}  sobre_mi.txt  motivacion.txt  contacto.txt  ${C('text-ok', CV)}`,
+      'ls proyectos': () => PROJECTS.map(p => C('text-amber', p.id + '/')).join('  '),
+      pwd: () => '/home/fabrizio',
+      date: () => new Date().toLocaleString('es-ES'),
+      uptime: () => `${now()} up desde 2025, 1 user, load average: ${C('text-ok', 'ganas, ganas, ganas')}`,
+      history: () => history.slice().reverse().map((h, i) => `  ${String(i + 1).padStart(3)}  ${esc(h)}`).join('\n') || '  (vacío)',
+      clear: () => { out.innerHTML = ''; return null; },
+      exit: () => 'logout… es broma. Todavía quedan proyectos por ver.'
+    };
+
+    async function run(raw) {
+      const cmd = raw.trim().replace(/\s+/g, ' ');
+      print(PROMPT + C('text-ink', esc(cmd)));
+      if (!cmd) return;
+      history.unshift(cmd); hIdx = -1;
+      const key = cmd.toLowerCase();
+
+      if (COMMANDS[key]) { const r = COMMANDS[key](); if (r != null) print(r); return; }
+      if (key.startsWith('open ') || key.startsWith('cd proyectos/')) {
+        const name = key.replace(/^open\s+/, '').replace(/^cd proyectos\//, '').replace(/\/$/, '');
+        const p = PROJECTS.find(x => x.id === name) || PROJECTS.find(x => x.id.startsWith(name));
+        if (p) { applyFilter('todos'); goTo('p-' + p.id, true); print(`Abriendo ${C('text-ink', esc(p.title))}… ${C('text-ok', '✓')}`); }
+        else print(`${C('text-alert', 'open:')} no existe "${esc(name)}". Prueba ${C('text-amber', 'proyectos')}`);
+        return;
+      }
+      if (key.startsWith('cat ')) {
+        const f = key.slice(4).trim();
+        print(FILES[f] ? FILES[f]() : `${C('text-alert', 'cat:')} ${esc(f)}: No existe el archivo o el directorio`);
+        return;
+      }
+      if (key.startsWith('ping')) {
+        print('PING fabrizio.bcn 56(84) bytes of data.');
+        const r = ['motivación', 'aprendizaje', 'compromiso', 'curiosidad'];
+        for (let i = 0; i < 4; i++) { await new Promise(res => setTimeout(res, reduce ? 0 : 420)); print(`64 bytes from fabrizio.bcn: icmp_seq=${i + 1} ttl=64 ${C('text-ok', r[i])}`); }
+        print(`--- 4 enviados, 4 recibidos, ${C('text-ok', '0% de pérdida')}. Respuesta media: menos de 24 h`);
+        return;
+      }
+      if (key.startsWith('echo ')) { print(esc(cmd.slice(5))); return; }
+      if (key.startsWith('sudo')) { print(`${C('text-alert', '[sudo]')} contraseña para recruiter: ••••••••\n${C('text-alert', 'Permiso denegado:')} aún no formo parte de tu equipo.\nPara arreglarlo, escribe a ${C('text-amber', EMAIL)}`); return; }
+      if (key.startsWith('rm ')) { print(`${C('text-alert', 'rm:')} buen intento. Aquí hay snapshots de todo ${C('text-ok', '✓')}`); return; }
+      if (key.startsWith('ssh')) { print(`Conectando con fabrizio@barcelona…\n${COMMANDS.contacto()}`); return; }
+      if (['skills', 'habilidades'].includes(key.replace(/^cd\s+/, '')) && key.startsWith('cd')) { goTo('skills'); print('Bajando a habilidades…'); return; }
+      print(`${C('text-alert', 'bash:')} ${esc(cmd)}: comando no encontrado. Escribe ${C('text-amber', 'help')}`);
+    }
+
+    form.addEventListener('submit', e => { e.preventDefault(); skipBoot = true; const v = input.value; input.value = ''; run(v); });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp' && history.length) { hIdx = Math.min(hIdx + 1, history.length - 1); input.value = history[hIdx]; e.preventDefault(); }
+      else if (e.key === 'ArrowDown') { hIdx = Math.max(hIdx - 1, -1); input.value = hIdx === -1 ? '' : history[hIdx]; e.preventDefault(); }
+      else if (e.key === 'Tab' && input.value) {
+        const v = input.value.toLowerCase();
+        const pool = [...Object.keys(COMMANDS), ...PROJECTS.map(p => 'open ' + p.id), ...Object.keys(FILES).map(f => 'cat ' + f), 'ping fabrizio'];
+        const m = pool.find(k => k.startsWith(v) && k !== v);
+        if (m) { input.value = m; e.preventDefault(); }
+      }
+      else if (e.ctrlKey && e.key.toLowerCase() === 'l') { e.preventDefault(); out.innerHTML = ''; }
+    });
+    $('#terminal').addEventListener('click', () => { if (!window.getSelection().toString()) { skipBoot = true; input.focus({ preventScroll: true }); } });
+    $$('.term-chip').forEach(b => b.addEventListener('click', () => { skipBoot = true; run(b.dataset.cmd); }));
+
+    // Arranque tipo systemd
+    (async function boot() {
+      const units = ['Reached target Network', 'Started OpenSSH server daemon', 'Started Samba AD Domain Controller', 'Mounted /backup (RAID 1)', 'Started Docker Application Container Engine', 'Started portfolio.service'];
+      for (const u of units) { await tWait(170); print(`[${C('text-ok', '  OK  ')}] ${u}.`); }
+      await tWait(250);
+      print(C('text-mute', `\nUbuntu 24.04 LTS srv-portfolio tty1\nÚltimo acceso: ${new Date().toLocaleDateString('es-ES')} desde tu navegador\n`) + `Escribe ${C('text-amber', 'help')} para ver los comandos.\n`);
+      if (skipBoot) return;
+      for (const cmd of ['whoami', 'neofetch']) {
+        if (skipBoot) return;
+        if (reduce) { await run(cmd); continue; }
+        await tWait(380);
+        const l = print('');
+        for (let i = 1; i <= cmd.length; i++) {
+          if (skipBoot) { l.remove(); return; }
+          l.innerHTML = PROMPT + C('text-ink', esc(cmd.slice(0, i))) + '<span class="caret"></span>';
+          await tWait(55 + Math.random() * 40);
+        }
+        await tWait(200); l.remove(); if (skipBoot) return; await run(cmd);
+      }
+    })();
+
+    icons();
+  })();
+  </script>
+</body>
+</html>

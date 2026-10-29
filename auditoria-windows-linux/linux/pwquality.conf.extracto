@@ -1,0 +1,3 @@
+# /etc/security/pwquality.conf (extracto) · módulo libpam-pwquality
+# Se descomenta y se fija la longitud mínima de las contraseñas.
+minlen = 8

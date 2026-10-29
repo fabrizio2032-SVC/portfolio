@@ -1,0 +1,19 @@
+# /etc/samba/smb.conf (extracto) · srv-docs01, servidor de expedientes
+[global]
+   workgroup = COAL
+   security = ads
+   realm = COAL.LAB
+   server min protocol = SMB3
+   restrict anonymous = 2
+   map to guest = never
+   log file = /var/log/samba/log.%m
+
+[Expedientes]
+   path = /srv/expedientes
+   read only = no
+   valid users = @"COAL\arquitectos"
+   create mask = 0660
+   directory mask = 0770
+   hide unreadable = yes
+   smb encrypt = desired
+# En /srv/expedientes/_canario hay ficheros señuelo vigilados por scripts/canario.sh

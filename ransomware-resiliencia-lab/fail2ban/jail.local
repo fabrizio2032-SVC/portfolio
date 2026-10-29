@@ -1,0 +1,20 @@
+# /etc/fail2ban/jail.local · srv-svc01
+[DEFAULT]
+bantime  = 1h
+findtime = 10m
+maxretry = 4
+ignoreip = 127.0.0.1/8 <RED_VPN>/24
+
+[sshd]
+enabled = true
+
+[nginx-http-auth]
+enabled = true
+logpath = /var/log/nginx/error.log
+
+# Reincidentes: bloqueo de una semana
+[recidive]
+enabled  = true
+bantime  = 1w
+findtime = 1d
+maxretry = 3

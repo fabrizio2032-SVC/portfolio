@@ -1,0 +1,8 @@
+.env
+*.key
+*.pem
+wireguard/wg0.conf
+boveda/.htpasswd
+.DS_Store
+Thumbs.db
+*.log

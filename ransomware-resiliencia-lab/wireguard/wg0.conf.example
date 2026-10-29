@@ -1,0 +1,14 @@
+# /etc/wireguard/wg0.conf (servidor srv-svc01) · único camino de administración remota
+# Genera las claves con:  wg genkey | tee privada | wg pubkey > publica
+# Las claves privadas nunca se suben al repositorio.
+[Interface]
+Address = <IP_VPN_SERVIDOR>/24
+ListenPort = 51820
+PrivateKey = <clave_privada_servidor>
+PostUp   = iptables -A FORWARD -i wg0 -o ens18 -j ACCEPT
+PostDown = iptables -D FORWARD -i wg0 -o ens18 -j ACCEPT
+
+[Peer]
+# administrador 1
+PublicKey = <clave_publica_admin1>
+AllowedIPs = <IP_VPN_ADMIN1>/32

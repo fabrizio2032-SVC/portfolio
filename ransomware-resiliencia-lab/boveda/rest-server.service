@@ -1,0 +1,14 @@
+# /etc/systemd/system/rest-server.service · srv-vault01 (red aislada)
+# --append-only: los clientes pueden añadir copias pero NO borrarlas ni modificarlas.
+[Unit]
+Description=restic rest-server (bóveda append-only)
+After=network-online.target
+
+[Service]
+User=restic
+ExecStart=/usr/local/bin/rest-server --path /srv/restic --append-only --private-repos \
+          --htpasswd-file /srv/restic/.htpasswd --listen :8000
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

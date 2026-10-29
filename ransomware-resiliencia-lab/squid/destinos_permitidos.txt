@@ -1,0 +1,6 @@
+# Destinos de actualización permitidos
+.ubuntu.com
+.docker.com
+.docker.io
+.github.com
+.grafana.com

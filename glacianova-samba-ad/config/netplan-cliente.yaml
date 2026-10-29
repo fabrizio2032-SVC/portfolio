@@ -1,0 +1,7 @@
+# /etc/netplan/ en los clientes Ubuntu 24.04
+# Reciben IP y DNS (el DC) por DHCP. Comprobar con: resolvectl status && ping glacianova.local
+network:
+  version: 2
+  ethernets:
+    enp3s0:
+      dhcp4: true

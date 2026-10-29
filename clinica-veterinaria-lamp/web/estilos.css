@@ -1,0 +1,84 @@
+/* estilos.css · Patitas Felices
+   Hoja de estilos de la web: variables de color, tarjetas y diseño adaptable. */
+:root {
+  --verde: #2f8f83;
+  --verde-oscuro: #22675f;
+  --acento: #f4a259;
+  --texto: #24313f;
+  --suave: #5b6878;
+  --fondo: #f4f6f8;
+  --blanco: #ffffff;
+  --sombra: 0 10px 30px rgba(36, 49, 63, .10);
+  --radio: 16px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; color: var(--texto); line-height: 1.6; }
+.bg-vete-main { background: var(--fondo); }
+img { max-width: 100%; display: block; }
+
+/* Cabecera */
+.vete-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  padding: 1rem 5%; background: var(--blanco); box-shadow: var(--sombra); position: sticky; top: 0; z-index: 20; }
+.logo-area { display: flex; align-items: center; gap: .8rem; }
+.vete-icon { color: var(--verde); font-size: 2rem; }
+.vete-name { font-size: 1.5rem; font-weight: 700; }
+.vete-nav-main { display: flex; flex-wrap: wrap; gap: .4rem; }
+.vete-nav-main a { padding: .55rem 1rem; border-radius: 999px; color: var(--suave); text-decoration: none; font-weight: 600; }
+.vete-nav-main a:hover, .vete-nav-main a.active { color: var(--verde); background: #e6f4f1; }
+.btn-primary { background: var(--verde) !important; color: var(--blanco) !important; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; }
+.btn-primary:hover { background: var(--verde-oscuro) !important; }
+
+/* Hero */
+.vete-hero { min-height: 52vh; display: grid; place-items: center; text-align: center; padding: 4rem 5%;
+  background-size: cover; background-position: center; position: relative; }
+.vete-hero::before { content: ""; position: absolute; inset: 0; background: rgba(20, 30, 40, .45); }
+.vete-hero-content { position: relative; color: var(--blanco); max-width: 46rem; }
+.vete-hero-content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 .5rem; line-height: 1.15; }
+.vete-hero-content p { font-size: 1.15rem; margin: 0; }
+
+/* Contenido */
+.vete-container-main { max-width: 1100px; margin: 0 auto; padding: 3rem 5%; display: grid; gap: 2rem; }
+.card-luxe { background: var(--blanco); border-radius: var(--radio); box-shadow: var(--sombra); padding: 2rem; }
+.vete-section-content h2 { margin-top: 0; }
+.vete-accent { color: var(--acento); }
+.grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; align-items: center; }
+.grid-3col { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.img-block-round img { border-radius: var(--radio); }
+.vete-bg-tech { background-size: cover; background-position: center; padding: 0; overflow: hidden; }
+.overlay-blur { background: rgba(20, 40, 50, .70); backdrop-filter: blur(4px); padding: 2.5rem 2rem; }
+.vete-card-icon-tech { color: var(--blanco); text-align: center; padding: 1.2rem; border: 1px solid rgba(255,255,255,.25); border-radius: 12px; }
+.vete-card-icon { text-align: center; padding: 1rem; }
+.vete-icon-alt { color: var(--verde); }
+
+/* Animales */
+.animal-row { display: grid; grid-template-columns: minmax(180px, 280px) 1fr; gap: 2rem; align-items: center; }
+.animal-img-block img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
+.animal-text-block h2 { margin-top: 0; }
+
+/* Ubicación */
+.ubicacion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; }
+.mapa-fake { position: relative; }
+.mapa-fake img { border-radius: var(--radio); }
+.pin-mapa { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100%); color: #e23d3d; }
+.btn-maps { display: inline-block; margin-top: 1rem; padding: .8rem 1.4rem; border-radius: 999px; background: var(--verde); color: var(--blanco); font-weight: 700; text-decoration: none; }
+.horarios-lista { display: grid; gap: .6rem; }
+.dia { display: flex; justify-content: space-between; border-bottom: 1px dashed #d5dbe1; padding: .4rem 0; }
+
+/* Formulario */
+.form-card { max-width: 600px; width: 100%; margin: -5rem auto 2rem; position: relative; z-index: 10; padding: 2.5rem; }
+.vete-form .form-group { display: grid; gap: .35rem; margin-bottom: 1rem; }
+.vete-form label { font-weight: 600; }
+.vete-form input, .vete-form select { padding: .75rem; border: 1px solid #d5dbe1; border-radius: 10px; font: inherit; }
+.vete-form input:focus, .vete-form select:focus { outline: 2px solid var(--verde); border-color: var(--verde); }
+.btn-block { width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem; }
+.aviso { padding: 1.1rem; border-radius: 10px; text-align: center; margin-bottom: 1.2rem; font-weight: 700; color: var(--blanco); }
+.aviso-ok { background: #27ae60; }
+.aviso-error { background: #c0392b; }
+
+/* Pie */
+.vete-footer { text-align: center; padding: 2rem 5%; background: var(--texto); color: #cfd6de; }
+
+@media (max-width: 640px) {
+  .animal-row { grid-template-columns: 1fr; }
+  .animal-img-block img { max-width: 220px; margin: 0 auto; }
+}

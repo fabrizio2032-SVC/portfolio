@@ -1,0 +1,18 @@
+# Extracto de /etc/cups/cupsd.conf · srv-ice01
+# CUPS escucha en la red y solo acepta peticiones de la LAN corporativa.
+
+Port 631
+Browsing On
+
+<Location />
+  Order allow,deny
+  Allow from <RED_LAN>/24
+</Location>
+
+<Location /admin>
+  Order allow,deny
+  Allow from <RED_LAN>/24
+</Location>
+
+# Permisos por grupo en una cola de impresión (ejemplo):
+#   sudo lpadmin -p imp-ventas -u allow:@g-impresion-permitida

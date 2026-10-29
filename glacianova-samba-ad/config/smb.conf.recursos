@@ -1,0 +1,34 @@
+# Añadir al final de /etc/samba/smb.conf (generado por samba-tool domain provision)
+# El símbolo @ indica grupo del dominio. Reiniciar con: sudo systemctl restart samba-ad-dc
+
+[perfiles]
+   path = /datos/perfiles
+   read only = No
+   browseable = No            ; nadie puede navegar por los perfiles de otros
+   csc policy = disable
+
+[ventas]
+   path = /datos/compartido/ventas
+   valid users = @"GLACIANOVA\Ventas", @"GLACIANOVA\IT_ADM"
+   read only = No
+   create mask = 0660
+   directory mask = 0770
+
+[logistica]
+   path = /datos/compartido/logistica
+   valid users = @"GLACIANOVA\Logistica", @"GLACIANOVA\IT_ADM"
+   read only = No
+   create mask = 0660
+   directory mask = 0770
+
+[administracion]
+   path = /datos/compartido/administracion
+   valid users = @"GLACIANOVA\Administracion", @"GLACIANOVA\IT_ADM"
+   read only = No
+   create mask = 0660
+   directory mask = 0770
+
+[comun]
+   path = /datos/compartido/comun
+   valid users = @"GLACIANOVA\Ventas", @"GLACIANOVA\Logistica", @"GLACIANOVA\Administracion", @"GLACIANOVA\IT_ADM"
+   read only = No

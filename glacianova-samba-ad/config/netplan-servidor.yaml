@@ -1,0 +1,15 @@
+# /etc/netplan/00-installer-config.yaml · srv-ice01
+# IP fija: el controlador de dominio debe ser siempre localizable.
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses:
+        - <IP_SRV_ICE01>/24
+      routes:
+        - to: default
+          via: <GATEWAY>
+      nameservers:
+        search: [glacianova.local]
+        addresses: [127.0.0.1, <DNS_EXTERNO>]
